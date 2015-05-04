@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+		<title>Cube^3</title>
+		<style>
+		
+			
+		</style>
+</head>
+<body>
+	<script src='js/three.min.js'></script>
+    <script src='js/grid.js'></script>
+	<script src='js/keyboard.js'></script>
+    <script src='js/player.js'></script>
+    <script src='js/obstacle.js'></script>
+    <script src='js/obstacleHandler.js'></script>
+
+	<script type='text/javascript'>
+
+"use strict";
+(function(){
+	// SCOPE CONSTANTS
+	
+	//Didn't know if you wanted windowed or fullscreen so for now I just set it large enough to see what was happening
+	var GAME = Object.freeze({
+		width: 1280,
+		height: 720
+	});
+	
+	var CAMERA = Object.freeze({
+		viewAngle: 60,
+	  	aspect: GAME.width / GAME.height,
+	  	near: 0.1,
+	  	far: 10000
+	});
+	
+	// SCOPE VARIABLES
+	var MATERIAL = Object.seal({
+		cubeMaterial1: undefined,
+		cubeMaterial2: undefined,
+		cubeMaterial3: undefined,
+		playerMaterial: undefined,
+		planeMaterial: undefined
+	});
+	
+	// scene graph variables
+	var renderer, scene, camera, pointLight, spotLight;
+
+	var player = new Player(0, 0);
+	var obstacleHndlr = undefined;
+	
+	//2D array veriable
+	var currentGrid = [];
+	
+function setup(){
+
+	// create a WebGL renderer
+	var div = document.getElementById("gameDiv");
+	renderer = new THREE.WebGLRenderer();
+	renderer.setSize(GAME.width, GAME.height);
+	div.appendChild(renderer.domElement);
+	
+	// create scene and set up all the 3D objects in the scene	
+	scene = new THREE.Scene();
+    obstacleHndlr = new obstacleHandler(scene)
+	createMaterials();
+	createCamera();
+	createModels();
+	createLights();
+	
+	// get started!
+	update();
+}
+
+function createMaterials(){
+	//temp plane material
+	MATERIAL.planeMaterial = new THREE.MeshLambertMaterial(
+	{	
+		color: 0x888888
+	});
+}
+
+function createCamera(){
+	camera = new THREE.PerspectiveCamera(
+		CAMERA.viewAngle,
+		CAMERA.aspect,
+		CAMERA.near,
+		CAMERA.far
+	);
+	
+	scene.add(camera);
+	
+	//change camera position for better view
+	camera.position.x = 5; //red
+	camera.position.y = 5; // green
+	camera.position.z = 40; //blue
+}
+
+function createModels(){
+	
+	//axes for reference
+	var axes = new THREE.AxisHelper(20);
+	scene.add(axes);
+	
+	scene.add(player.cube);
+}
+
+function createLights(){
+	pointLight = new THREE.PointLight(0xF8D898);
+	
+	pointLight.position.x = -1000;
+	pointLight.position.y = 0;
+	pointLight.position.z = 1000;
+	pointLight.intensity = 2.9;
+	pointLight.distance = 10000;
+	
+	scene.add(pointLight);
+	
+	renderer.shadowMapEnabled = true;
+}
+
+// ------- GAME UPDATE FUNCTIONS -------------- //
+function update(){	
+	// schedule next update
+	requestAnimationFrame(update);
+
+	obstacleHndlr.generate(); // generates enemy based on obstacleHndlr.spawnChance
+	obstacleHndlr.updateObstacles();    // updates obstacles locations
+
+	renderer.render(scene, camera);
+}
+
+// OTHER FUNCTIONS
+function dtr(degrees) {
+  return degrees * Math.PI / 180;
+}
+
+document.body.onload = setup;
+
+}())
+	
+</script>
+
+	<div id='gameDiv'></div>
+
+</body>
+
+</html>

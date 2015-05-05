@@ -22,7 +22,7 @@
 (function(){
 	// SCOPE CONSTANTS
 	
-	//Didn't know if you wanted windowed or fullscreen so for now I just set it large enough to see what was happening
+    //bug where screen is moving with arrow keys if windowed
 	var GAME = Object.freeze({
 		width: 1280,
 		height: 720
@@ -77,7 +77,7 @@ function createMaterials(){
 	//temp plane material
 	MATERIAL.planeMaterial = new THREE.MeshLambertMaterial(
 	{	
-		color: 0x888888
+		color: 0xFFFFFF
 	});
 }
 
@@ -93,38 +93,71 @@ function createCamera(){
 	
 	//change camera position for better view
 	camera.position.x = 5; //red
-	camera.position.y = 5; // green
-	camera.position.z = 40; //blue
+	camera.position.y = 0; // green
+	camera.position.z = 30; //blue
 }
 
 function createModels(){
 	
+    var planeG = new THREE.PlaneGeometry(100,100);
+    var plane = new THREE.Mesh(planeG, MATERIAL.planeMaterial);
+    plane.rotation.x = dtr(-90);
+    plane.receiveShadow = true;
+    scene.add(plane);
+
+
 	//axes for reference
 	var axes = new THREE.AxisHelper(20);
-	scene.add(axes);
+	//scene.add(axes);
 	
 	scene.add(player.cube);
 }
 
 function createLights(){
-	pointLight = new THREE.PointLight(0xF8D898);
-	
-	pointLight.position.x = -1000;
-	pointLight.position.y = 0;
-	pointLight.position.z = 1000;
-	pointLight.intensity = 2.9;
-	pointLight.distance = 10000;
-	
-	scene.add(pointLight);
-	
+    
+var spotLight = new THREE.SpotLight(0xFFFFFF);
+    spotLight.position.set(5, 30, 50);
+    spotLight.intensity = 1;
+    spotLight.rotation.x = dtr(70);
+    spotLight.castShadow = true;
+    scene.add(spotLight);
+    
+    var spotLight2 = new THREE.SpotLight(0xFFFFFF);
+    spotLight2.position.set(0, -10, 50);
+    spotLight2.intensity = 1;
+    spotLight2.rotation.x = dtr(40);
+    spotLight2.castShadow = false;
+    scene.add(spotLight2);
+
+    var spotLight3 = new THREE.SpotLight(0xFFFFFF);
+    spotLight3.position.set(10, -10, 50);
+    spotLight3.intensity = 1;
+    spotLight3.rotation.x = dtr(40);
+    spotLight3.castShadow = false;
+    scene.add(spotLight3);
+
+    /* cool hidden effect*/
+    var light = new THREE.PointLight(0xffffff, 1, 100);
+    light.position.set(0, 50, 50);
+    scene.add(light);
+
 	renderer.shadowMapEnabled = true;
 }
 
 // ------- GAME UPDATE FUNCTIONS -------------- //
 function update(){	
 	// schedule next update
-	requestAnimationFrame(update);
+    requestAnimationFrame(update);
+   // console.log(player.cube.position.y);
+	if (player.cube.position.y < 10) {
+	    camera.position.y = player.cube.position.y * 2;
 
+	} else if (player.cube.position.y < 15) {
+	    camera.position.y = player.cube.position.y * 1.7;
+
+	} else {
+	    camera.position.y = player.cube.position.y * 1.4;
+	}
 	obstacleHndlr.generate(); // generates enemy based on obstacleHndlr.spawnChance
 	obstacleHndlr.updateObstacles();    // updates obstacles locations
 

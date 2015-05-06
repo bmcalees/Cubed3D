@@ -17,7 +17,7 @@ var currentGrid = [];
         return row;
     }
 
-    var x = 0, y = 0;
+    var x = 0, y = 5;
 
     //creates the 3 columns by adding 3 rows to the array
     for (var i = 0; i < 3; i++) {

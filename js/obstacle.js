@@ -25,7 +25,7 @@
     self.cube.castShadow = true;
     self.cube.position.x = currentGrid[self.xPos][self.yPos].x;
     self.cube.position.y = currentGrid[self.xPos][self.yPos].y;
-    self.cube.position.z = -200;
+    self.cube.position.z = -300;
 
     scene.add(self.cube);
 

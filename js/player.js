@@ -3,7 +3,11 @@
     self.xPos = 0;
     self.yPos = 0;
 
-    self.cubeGeo = new THREE.BoxGeometry(3, 3, 3);
+    self.xWidth = 3;
+    self.yHeight = 3;
+    self.zLength = 3;
+
+    self.cubeGeo = new THREE.BoxGeometry(self.xWidth, self.yHeight, self.zLength);
     self.cubeMat = new THREE.MeshLambertMaterial(
 	{
 	    color: 0x00ff00

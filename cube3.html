@@ -11,6 +11,7 @@
 <body>
 	<script src='js/three.min.js'></script>
     <script src='js/grid.js'></script>
+    <script src='js/game.js'></script>
 	<script src='js/keyboard.js'></script>
     <script src='js/player.js'></script>
     <script src='js/obstacle.js'></script>
@@ -48,6 +49,9 @@
 
 	var player = new Player(0, 0);
 	var obstacleHndlr = undefined;
+
+    // html tag references
+	var livesTag, coinTag, timeTag;
 	
 	//2D array veriable
 	var currentGrid = [];
@@ -55,19 +59,24 @@
 function setup(){
 
 	// create a WebGL renderer
-	var div = document.getElementById("gameDiv");
+    var div = document.getElementById("gameDiv");
+    livesTag = document.getElementById("lives");
+    coinTag = document.getElementById("coins");
+    timeTag = document.getElementById("time");
+
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(GAME.width, GAME.height);
 	div.appendChild(renderer.domElement);
 	
 	// create scene and set up all the 3D objects in the scene	
 	scene = new THREE.Scene();
-    obstacleHndlr = new obstacleHandler(scene)
+	obstacleHndlr = new obstacleHandler(scene, player);
 	createMaterials();
 	createCamera();
 	createModels();
 	createLights();
 	
+	Game.setGameState("PLAYING");
 	// get started!
 	update();
 }
@@ -121,6 +130,8 @@ function createLights(){
 var spotLight = new THREE.SpotLight(0xFFFFFF);
     spotLight.position.set(5, 30, 50);
     spotLight.intensity = 1;
+    spotLight.intensity = .5;
+    spotLight.rotation.x = dtr(70);
     spotLight.castShadow = true;
     scene.add(spotLight);
     
@@ -130,12 +141,15 @@ var spotLight = new THREE.SpotLight(0xFFFFFF);
     spotLight2.intensity = 1;
     spotLight2.target = camera;
     spotLight2.castShadow = false;
-    scene.add(spotLight2);
+    //scene.add(spotLight2);
 
     var spotLight3 = new THREE.SpotLight(0xFFFFFF);
     spotLight3.position.set(20, -10, -120);
-    spotLight2.target = new THREE.Object3D(5, 5, -20);
+    spotLight3.target = new THREE.Object3D(5, 5, -20);
     spotLight3.intensity = 1;
+    spotLight3.position.set(10, -10, 50);
+    spotLight3.intensity = .5;
+    spotLight3.rotation.x = dtr(40);
     spotLight3.castShadow = false;
     scene.add(spotLight3); 
 
@@ -162,6 +176,10 @@ function update(){
 	obstacleHndlr.generate(); // generates enemy based on obstacleHndlr.spawnChance
 	obstacleHndlr.updateObstacles();    // updates obstacles locations
 
+	livesTag.innerHTML = "Lives: " + Game.lives;
+	coinTag.innerHTML = "Coins: " + Game.score;
+	timeTag.innerHTML = "Time: " + Game.time;
+
 	renderer.render(scene, camera);
 }
 
@@ -175,7 +193,9 @@ document.body.onload = setup;
 }())
 	
 </script>
-
+    <span id="lives" style="color:white; position:absolute; left:50px; height:50px;"></span>
+    <span id="time" style="color:white; position:absolute; left:200px; height:50px;"></span>
+    <span id="coins" style="color:white; position:absolute; left:350px; height:50px;"></span>
 	<div id='gameDiv'></div>
 
 </body>

@@ -13,7 +13,7 @@
 	    color: 0x00ff00
 	});
     self.cube = new THREE.Mesh(self.cubeGeo, self.cubeMat);
-    self.cube.castShadow = true;
+   // self.cube.castShadow = true;
 
     // handle movement
     window.addEventListener('keydown', function (event) { keyDown(event); }, false);

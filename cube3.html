@@ -94,7 +94,10 @@ function createCamera(){
 	camera.position.x = 5; //red
 	camera.position.y = 0; // green
 	camera.position.z = 30; //blue
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 }
 
 function createModels(){
@@ -103,9 +106,12 @@ function createModels(){
     var plane = new THREE.Mesh(planeG, MATERIAL.planeMaterial);
     plane.rotation.x = dtr(-90);
     plane.receiveShadow = true;
+<<<<<<< HEAD
     plane.position.x = 25;
     plane.position.y = 0;
     plane.position.z = -50
+=======
+>>>>>>> origin/master
     scene.add(plane);
 
 
@@ -121,6 +127,7 @@ function createLights(){
 var spotLight = new THREE.SpotLight(0xFFFFFF);
     spotLight.position.set(5, 30, 50);
     spotLight.intensity = 1;
+<<<<<<< HEAD
     spotLight.castShadow = false;
     scene.add(spotLight);
     
@@ -129,10 +136,21 @@ var spotLight = new THREE.SpotLight(0xFFFFFF);
     spotLight2.target = new THREE.Object3D(5, 5, -20);
     spotLight2.intensity = 1;
     spotLight2.target = camera;
+=======
+    spotLight.rotation.x = dtr(70);
+    spotLight.castShadow = true;
+    scene.add(spotLight);
+    
+    var spotLight2 = new THREE.SpotLight(0xFFFFFF);
+    spotLight2.position.set(0, -10, 50);
+    spotLight2.intensity = 1;
+    spotLight2.rotation.x = dtr(40);
+>>>>>>> origin/master
     spotLight2.castShadow = false;
     scene.add(spotLight2);
 
     var spotLight3 = new THREE.SpotLight(0xFFFFFF);
+<<<<<<< HEAD
     spotLight3.position.set(20, -10, -120);
     spotLight2.target = new THREE.Object3D(5, 5, -20);
     spotLight3.intensity = 1;
@@ -143,6 +161,17 @@ var spotLight = new THREE.SpotLight(0xFFFFFF);
     var light = new THREE.PointLight(0xffffff, 1, 100);
     light.position.set(5, 10, 50);
     light.intensity = 1;
+=======
+    spotLight3.position.set(10, -10, 50);
+    spotLight3.intensity = 1;
+    spotLight3.rotation.x = dtr(40);
+    spotLight3.castShadow = false;
+    scene.add(spotLight3);
+
+    /* cool hidden effect*/
+    var light = new THREE.PointLight(0xffffff, 1, 100);
+    light.position.set(0, 50, 50);
+>>>>>>> origin/master
     scene.add(light);
 
 	renderer.shadowMapEnabled = true;
@@ -153,12 +182,24 @@ function update(){
 	// schedule next update
     requestAnimationFrame(update);
    // console.log(player.cube.position.y);
+<<<<<<< HEAD
 
     camera.position.x += (player.cube.position.x - camera.position.x) * 0.05;
 	camera.position.y += (player.cube.position.y - camera.position.y) * 0.05;
 	camera.position.z = player.cube.position.z -2;
 
 	camera.rotation.x = dtr(-0.01 * (player.cube.position.y));
+=======
+	if (player.cube.position.y < 10) {
+	    camera.position.y = player.cube.position.y * 2;
+
+	} else if (player.cube.position.y < 15) {
+	    camera.position.y = player.cube.position.y * 1.7;
+
+	} else {
+	    camera.position.y = player.cube.position.y * 1.4;
+	}
+>>>>>>> origin/master
 	obstacleHndlr.generate(); // generates enemy based on obstacleHndlr.spawnChance
 	obstacleHndlr.updateObstacles();    // updates obstacles locations
 

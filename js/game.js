@@ -2,7 +2,7 @@
     time : 0,
     coins: 0,
     lives: 3,
-    gameState : "MENU", // "MENU", "PLAYING", "END"
+    gameState : "", // "MENU", "PLAYING", "END"
 
     timerId : 0,
 

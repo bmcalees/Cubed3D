@@ -121,7 +121,7 @@ function createLights(){
 var spotLight = new THREE.SpotLight(0xFFFFFF);
     spotLight.position.set(5, 30, 50);
     spotLight.intensity = 1;
-    spotLight.castShadow = false;
+    spotLight.castShadow = true;
     scene.add(spotLight);
     
     var spotLight2 = new THREE.SpotLight(0xFFFFFF);
@@ -136,7 +136,7 @@ var spotLight = new THREE.SpotLight(0xFFFFFF);
     spotLight3.position.set(20, -10, -120);
     spotLight2.target = new THREE.Object3D(5, 5, -20);
     spotLight3.intensity = 1;
-    spotLight3.castShadow = true;
+    spotLight3.castShadow = false;
     scene.add(spotLight3); 
 
     /* cool hidden effect*/

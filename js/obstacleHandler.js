@@ -6,7 +6,7 @@
 function obstacleHandler(scene, player) {
     var self = this;
     self.obstacles = [];
-    self.spawnChance = 1; // out of 100
+    self.spawnChance = 10; // out of 100
 
     self.generate = function () { // adds obstacles - called in main update()
         var rndm = Math.random();
@@ -21,12 +21,13 @@ function obstacleHandler(scene, player) {
 
             if (obstacle.cube.position.z > 0 - player.zLength) {  // INFO: player is located at 0 on the Z axis
                 if (obstacle.xPos == player.xPos && obstacle.yPos == player.yPos) { // player ran into a cube
-                    scene.remove(obstacle.cube);
-                    self.obstacles.splice(i, 1);
+                    
                     Game.lives--;
                     if (Game.lives == 0) {
                         Game.setGameState("END");
                     }
+                    scene.remove(obstacle.cube);
+                    self.obstacles.splice(i, 1);
                 }
             }
             if (obstacle.cube.position.z > 0) {   //obstacle is off screen

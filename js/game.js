@@ -15,7 +15,7 @@
             this.timerId = setInterval(function () { this.time++ }, 1000)
         }
 
-        gameState = state;
+        this.gameState = state;
     },
 
     reset: function () {

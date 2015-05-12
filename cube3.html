@@ -70,11 +70,11 @@ function setup(){
 	
 	// create scene and set up all the 3D objects in the scene	
 	scene = new THREE.Scene();
-	obstacleHndlr = new obstacleHandler(scene, player);
 	createMaterials();
 	createCamera();
 	createModels();
 	createLights();
+	obstacleHndlr = new obstacleHandler(scene, player, camera, renderer);
 	
 	Game.setGameState("PLAYING");
 	// get started!
@@ -175,9 +175,10 @@ function update(){
 	camera.rotation.x = dtr(-0.01 * (player.cube.position.y));
 	obstacleHndlr.generate(); // generates enemy based on obstacleHndlr.spawnChance
 	obstacleHndlr.updateObstacles();    // updates obstacles locations
+	obstacleHndlr.handleDifficulty();   // updates spawn rates
 
 	livesTag.innerHTML = "Lives: " + Game.lives;
-	coinTag.innerHTML = "Coins: " + Game.score;
+	coinTag.innerHTML = "Coins: " + Game.coins;
 	timeTag.innerHTML = "Time: " + Game.time;
 
 	renderer.render(scene, camera);

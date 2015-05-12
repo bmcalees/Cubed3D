@@ -3,17 +3,29 @@
 // generating new obstacles
 // updating the obstacles location
 // deleting the obstacle if it goes off screen
-function obstacleHandler(scene, player) {
+// handling hit detection of player and obstacle
+// increasing game difficulty over time
+
+function obstacleHandler(scene, player, camera, renderer) {
     var self = this;
     self.obstacles = [];
-    self.spawnChance = 10; // out of 100
+    self.spawnChance = 18; // out of 100
 
     self.generate = function () { // adds obstacles - called in main update()
         var rndm = Math.random();
         if (rndm < self.spawnChance / 100) {
             self.obstacles.push(new Obstacle(scene));
         }
-    }
+    };
+
+    self.handleDifficulty = function () {   // increments spawn rate based on seconds passed in game
+
+        if (self.spawnChance < 20) {
+            if (Game.time % 10 === 0) {
+                self.spawnChance = (Game.time / 5) + 3;
+            }
+        }
+    };
 
     self.updateObstacles = function(){  // updates obstacles locations - called in main update()
         for (var i = self.obstacles.length - 1; i >= 0 ; i--) { // have to loop backwards because deleting from array shifts array
@@ -21,7 +33,7 @@ function obstacleHandler(scene, player) {
 
             if (obstacle.cube.position.z > 0 - player.zLength) {  // INFO: player is located at 0 on the Z axis
                 if (obstacle.xPos == player.xPos && obstacle.yPos == player.yPos) { // player ran into a cube
-                    
+
                     Game.lives--;
                     if (Game.lives == 0) {
                         Game.setGameState("END");

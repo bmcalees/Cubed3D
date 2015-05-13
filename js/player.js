@@ -1,7 +1,7 @@
 ﻿function Player() {
     var self = this;
-    self.xPos = 1;
-    self.yPos = 1;
+    self.xPos = 0;
+    self.yPos = 0;
 
     self.xWidth = 3;
     self.yHeight = 3;
@@ -11,12 +11,9 @@
     self.cubeMat = new THREE.MeshLambertMaterial(
 	{
 	    color: 0x00ff00,
-        transparent: true,
         opacity: 0
 	});
     self.cube = new THREE.Mesh(self.cubeGeo, self.cubeMat);
-    self.cube.position.x = currentGrid[self.xPos][self.yPos].x;
-    self.cube.position.y = currentGrid[self.xPos][self.yPos].y;
    // self.cube.castShadow = true;
 
     // handle movement

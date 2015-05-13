@@ -12,10 +12,10 @@
                 clearInterval(this.timerId);
         }
         if (state === "PLAYING") {
-            this.timerId = setInterval(function () { this.time = this.time + 1; }.bind(this), 1000)
+            this.timerId = setInterval(function () { this.time++ }, 1000)
         }
 
-        this.gameState = state;
+        gameState = state;
     },
 
     reset: function () {

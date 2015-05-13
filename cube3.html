@@ -45,8 +45,9 @@
 	});
 	
 	// scene graph variables
-	var renderer, scene, camera, pointLight, spotLight, tween;
-
+	var renderer, scene, camera, pointLight, spotLight;
+	var collectable, powerUp, mirrorCubeCamera, plane, planeLeft, planeRight;
+	
 	var player = new Player(0, 0);
 	var obstacleHndlr = undefined;
 
@@ -87,6 +88,11 @@ function createMaterials(){
 	{	
 		color: 0xFFFFFF
 	});
+	
+		MATERIAL.collectableMaterial = new THREE.MeshLambertMaterial(
+    {
+        color: 0xCC9900
+    });
 }
 
 function createCamera(){
@@ -108,14 +114,45 @@ function createCamera(){
 
 function createModels(){
 	
+ /* mirrorCubeCamera = new THREE.CubeCamera(0.1, 5000, 500);
+    scene.add(mirrorCubeCamera);
+    var mirrorCubeMaterial = new THREE.MeshBasicMaterial({ envMap: mirrorCubeCamera.renderTarget });*/
     var planeG = new THREE.PlaneGeometry(100,100);
-    var plane = new THREE.Mesh(planeG, MATERIAL.planeMaterial);
+    plane = new THREE.Mesh(planeG, MATERIAL.planeMaterial);
     plane.rotation.x = dtr(-90);
     plane.receiveShadow = true;
-    plane.position.x = 25;
+    plane.position.x = 0;
     plane.position.y = 0;
     plane.position.z = -50
     scene.add(plane);
+
+    planeLeft = new THREE.Mesh(planeG, MATERIAL.planeMaterial);
+    planeLeft.rotation.y = dtr(90);
+    planeLeft.receiveShadow = true;
+    planeLeft.position.x = -20;
+    planeLeft.position.y = 0;
+    planeLeft.position.z = -50;
+   // scene.add(planeLeft);
+
+    planeRight = new THREE.Mesh(planeG, MATERIAL.planeMaterial);
+    planeRight.rotation.y = dtr(-90);
+    planeRight.receiveShadow = true;
+    planeRight.position.x = 35;
+    planeRight.position.y = 0;
+    planeRight.position.z = -50;
+    //scene.add(planeRight);
+
+    var collectableG = new THREE.TorusGeometry(1, 0.5, 8, 4);
+  // radius of entire torus, diameter of tube (less than total radius), 
+    // segments around radius, segments around torus ("sides")
+    collectable = new THREE.Mesh(collectableG, MATERIAL.collectableMaterial);
+    collectable.position.set(20, 5, -50);
+    scene.add(collectable);
+
+    var powerUpG = new THREE.IcosahedronGeometry(2, 0);
+    powerUp = new THREE.Mesh(powerUpG, MATERIAL.collectableMaterial);
+    powerUp.position.set(25,5,-50);
+    scene.add(powerUp);
 
 
 	//axes for reference
@@ -130,7 +167,6 @@ function createLights(){
 var spotLight = new THREE.SpotLight(0xFFFFFF);
     spotLight.position.set(5, 30, 50);
     spotLight.intensity = 1;
-    spotLight.intensity = .5;
     spotLight.rotation.x = dtr(70);
     spotLight.castShadow = true;
     scene.add(spotLight);
@@ -139,17 +175,13 @@ var spotLight = new THREE.SpotLight(0xFFFFFF);
     spotLight2.position.set(-20, 15, -120);
     spotLight2.target = new THREE.Object3D(5, 5, -20);
     spotLight2.intensity = 1;
-    spotLight2.target = camera;
     spotLight2.castShadow = false;
-    //scene.add(spotLight2);
+    scene.add(spotLight2);
 
     var spotLight3 = new THREE.SpotLight(0xFFFFFF);
-    spotLight3.position.set(20, -10, -120);
+    spotLight3.position.set(20, 0, -120);
     spotLight3.target = new THREE.Object3D(5, 5, -20);
     spotLight3.intensity = 1;
-    spotLight3.position.set(10, -10, 50);
-    spotLight3.intensity = .5;
-    spotLight3.rotation.x = dtr(40);
     spotLight3.castShadow = false;
     scene.add(spotLight3); 
 
@@ -170,9 +202,13 @@ function update(){
 
     camera.position.x += (player.cube.position.x - camera.position.x) * 0.05;
 	camera.position.y += (player.cube.position.y - camera.position.y) * 0.05;
-	camera.position.z = player.cube.position.z + 3;
+	camera.position.z = player.cube.position.z -2;
 
 	camera.rotation.x = dtr(-0.01 * (player.cube.position.y));
+	
+	collectable.rotation.y += 0.05;
+	powerUp.rotation.y += 0.05;
+	
 	obstacleHndlr.generate(); // generates enemy based on obstacleHndlr.spawnChance
 	obstacleHndlr.updateObstacles();    // updates obstacles locations
 	obstacleHndlr.handleDifficulty();   // updates spawn rates
@@ -181,6 +217,10 @@ function update(){
 	coinTag.innerHTML = "Coins: " + Game.coins;
 	timeTag.innerHTML = "Time: " + Game.time;
 
+	/*planeLeft.visible = false;
+	mirrorCubeCamera.updateCubeMap(renderer, scene);
+	planeLeft.visible = true;*/
+	
 	renderer.render(scene, camera);
 }
 

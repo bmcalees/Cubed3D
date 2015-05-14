@@ -27,6 +27,11 @@
         self.cube.position.y = currentGrid[self.xPos][self.yPos].y;
     }
 
+    function updateHUD() {
+        $(".occupied").hide();
+        $("#grid_"+self.xPos+"-"+self.yPos).show();
+    }
+
     function keyDown(event) {
         if (event.keyCode === 65 || event.keyCode === 37) { // Left
             if (self.yPos > 0) {
@@ -48,6 +53,7 @@
                 self.xPos--;
             }
         }
-        updateLocation()
+        updateLocation();
+        updateHUD();
     }
 }

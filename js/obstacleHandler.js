@@ -6,7 +6,7 @@
 // handling hit detection of player and obstacle
 // increasing game difficulty over time
 
-function obstacleHandler(scene, player, camera, renderer) {
+function obstacleHandler(scene, player) {
     var self = this;
     self.obstacles = [];
     self.spawnChance = 18; // out of 100

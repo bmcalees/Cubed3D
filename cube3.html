@@ -3,8 +3,11 @@
 <head>
 	<meta charset="utf-8" />
 		<title>Cube^3</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
-		
+	    body {
+            overflow:hidden;
+		}
 			
 		</style>
 </head>
@@ -16,6 +19,8 @@
     <script src='js/player.js'></script>
     <script src='js/obstacle.js'></script>
     <script src='js/obstacleHandler.js'></script>
+    <script src='js/THREEx.WindowResize.js'></script>
+    <script src='js/THREEx.Fullscreen.js'></script>
 	<script type='text/javascript'>
 
 "use strict";
@@ -24,8 +29,8 @@
 	
     //bug where screen is moving with arrow keys if windowed
 	var GAME = Object.freeze({
-		width: 1400,
-		height: 900
+		width: window.innerWidth,
+		height: window.innerHeight
 	});
 	
 	var CAMERA = Object.freeze({
@@ -69,6 +74,8 @@ function setup(){
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(GAME.width, GAME.height);
 	div.appendChild(renderer.domElement);
+
+
 	
 	// create scene and set up all the 3D objects in the scene	
 	scene = new THREE.Scene();
@@ -235,11 +242,11 @@ document.body.onload = setup;
 }())
 	
 </script>
+    <div id='gameDiv'style="position: absolute; left:0px; top:0px"></div>
     <span id="lives" style="color:white; position:absolute; left:50px; height:50px;"></span>
     <span id="time" style="color:white; position:absolute; left:200px; height:50px;"></span>
     <span id="coins" style="color:white; position:absolute; left:350px; height:50px;"></span>
-	<div id='gameDiv'></div>
-
+	
 </body>
 
 </html>

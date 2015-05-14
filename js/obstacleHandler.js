@@ -6,15 +6,20 @@
 // handling hit detection of player and obstacle
 // increasing game difficulty over time
 
-function obstacleHandler(scene, player) {
+function obstacleHandler(scene, player, camera, renderer) {
     var self = this;
     self.obstacles = [];
-    self.spawnChance = 18; // out of 100
+    self.coins = [];
+    self.spawnChance = 2; // out of 100
 
     self.generate = function () { // adds obstacles - called in main update()
         var rndm = Math.random();
         if (rndm < self.spawnChance / 100) {
             self.obstacles.push(new Obstacle(scene));
+        }
+        if (rndm < (self.spawnChance/200))
+        {
+            self.coins.push(new Coin(scene));
         }
     };
 
@@ -22,9 +27,10 @@ function obstacleHandler(scene, player) {
 
         if (self.spawnChance < 20) {
             if (Game.time % 10 === 0) {
-                self.spawnChance = (Game.time / 5) + 3;
+                self.spawnChance = (Game.time / 6) + 3;
             }
         }
+
     };
 
     self.updateObstacles = function(){  // updates obstacles locations - called in main update()
@@ -50,5 +56,27 @@ function obstacleHandler(scene, player) {
                 obstacle.updateLocation();
             }
         }
+
+        for (var i = self.coins.length - 1; i >= 0 ; i--) { // have to loop backwards because deleting from array shifts array
+            var currentCoin = self.coins[i];
+
+            if (currentCoin.coin.position.z > 0 - player.zLength) {  // INFO: player is located at 0 on the Z axis
+                if (currentCoin.xPos == player.xPos && currentCoin.yPos == player.yPos) { // player ran into a cube
+
+                    Game.coins++;
+                 
+                    scene.remove(currentCoin.coin);
+                    self.coins.splice(i, 1);
+                }
+            }
+            if (currentCoin.coin.position.z > 0) {   //obstacle is off screen
+                scene.remove(currentCoin.coin);
+                self.coins.splice(i, 1);
+            }
+            else {  // move obstacle
+                currentCoin.updateLocation();
+            }
+        }
+        
     }
 }

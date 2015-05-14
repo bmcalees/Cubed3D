@@ -19,6 +19,7 @@
 	<script src='js/keyboard.js'></script>
     <script src='js/player.js'></script>
     <script src='js/obstacle.js'></script>
+	<script src='js/coin.js'></script>
     <script src='js/obstacleHandler.js'></script>
     <script src='js/THREEx.WindowResize.js'></script>
     <script src='js/THREEx.Fullscreen.js'></script>
@@ -53,7 +54,7 @@
 	
 	// scene graph variables
 	var renderer, scene, camera, pointLight, spotLight;
-	var collectable, powerUp, mirrorCubeCamera, plane, planeLeft, planeRight;
+	var powerUp, mirrorCubeCamera, plane, planeLeft, planeRight;
 	
 	var player = new Player(0, 0);
 	var obstacleHndlr = undefined;
@@ -103,11 +104,6 @@ function createMaterials(){
 	{	
 		color: 0xFFFFFF
 	});
-	
-		MATERIAL.collectableMaterial = new THREE.MeshLambertMaterial(
-    {
-        color: 0xCC9900
-    });
 }
 
 function createCamera(){
@@ -156,13 +152,6 @@ function createModels(){
     planeRight.position.y = 0;
     planeRight.position.z = -50;
     //scene.add(planeRight);
-
-    var collectableG = new THREE.TorusGeometry(1, 0.5, 8, 4);
-  // radius of entire torus, diameter of tube (less than total radius), 
-    // segments around radius, segments around torus ("sides")
-    collectable = new THREE.Mesh(collectableG, MATERIAL.collectableMaterial);
-    collectable.position.set(20, 5, -50);
-    scene.add(collectable);
 
     var powerUpG = new THREE.IcosahedronGeometry(2, 0);
     powerUp = new THREE.Mesh(powerUpG, MATERIAL.collectableMaterial);
@@ -221,7 +210,6 @@ function update(){
 
 	camera.rotation.x = dtr(-0.01 * (player.cube.position.y));
 	
-	collectable.rotation.y += 0.05;
 	powerUp.rotation.y += 0.05;
 	
 	obstacleHndlr.generate(); // generates enemy based on obstacleHndlr.spawnChance

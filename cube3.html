@@ -84,7 +84,11 @@ function setup(){
 	createModels();
 	createLights();
 	obstacleHndlr = new obstacleHandler(scene, player, camera, renderer);
-	
+
+	// automatically resize renderer
+	THREEx.WindowResize(renderer, camera);
+    // toggle full-screen on given key press
+	THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
 	Game.setGameState("PLAYING");
 	// get started!
 	update();

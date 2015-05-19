@@ -77,8 +77,8 @@
         // set starting game state
         Game.setGameState("MENU");
         document.getElementById("startBtn").addEventListener("click", function() {
-            Game.setGameState("PLAYING");
             Game.reset();
+            Game.setGameState("PLAYING");
         });
 
         // get started!
@@ -148,6 +148,11 @@
         planeTop.position.y = 30;
         planeTop.position.z = -50
         scene.add(planeTop);
+
+        var powerUpG = new THREE.IcosahedronGeometry(2, 0);
+        powerUp = new THREE.Mesh(powerUpG, MATERIAL.collectableMaterial);
+        powerUp.position.set(25,5,-50);
+        scene.add(powerUp);
 
 
         //axes for reference

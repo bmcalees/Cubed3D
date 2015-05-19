@@ -40,7 +40,7 @@ function obstacleHandler(scene, player, hitEffect) {
                 var obstacle = self.obstacles[i];
 
                 if (obstacle.cube.position.z > 0 - player.zLength) {  // INFO: player is located at 0 on the Z axis
-                    if (obstacle.xPos == player.xPos && obstacle.yPos == player.yPos) { // player ran into a cube
+                    if (obstacle.xPos == player.xPos && obstacle.yPos == player.yPos && Game.gameState != "MENU" && Game.gameState != "PAUSED" && self.hitEffectTimer <= 0) { // player ran into a cube
 
                         Game.lives--;
                         hitEffect.style.display = "block";
@@ -101,10 +101,12 @@ function obstacleHandler(scene, player, hitEffect) {
     // cleans obstacles and coins array on game over
     self.cleanObstacles = function() {
         for (var i = self.obstacles.length - 1; i >= 0; i--) {
+            var obstacle = self.obstacles[i];
             scene.remove(obstacle.cube);
             self.obstacles.splice(i, 1);
         }
         for (var i = self.coins.length - 1; i >= 0; i--) {
+            var currentCoin = self.coins[i];
             scene.remove(currentCoin.coin);
             self.coins.splice(i, 1);
         }

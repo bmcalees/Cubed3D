@@ -23,11 +23,12 @@
         if (state === "END") {
             if (this.timerId != 0)
                 clearInterval(this.timerId);
-            this.reset();
             $("#startBtn").show();
             // do end of game score calculation
             $(".end").show();
-            $("#score")[0].innerHTML = "" + (this.coins / 4) * this.time;
+            var score = Math.round((this.coins / 4) * this.time);
+            $("#score")[0].innerHTML = score.toString();
+            this.reset();
         }
         if (state === "PLAYING") {
             this.timerId = setInterval(function () { this.time = this.time + 1; }.bind(this), 1000)

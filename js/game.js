@@ -2,7 +2,8 @@
     time : 0,
     coins: 0,
     lives: 3,
-    gameState : "", // "MENU", "PLAYING", "END"
+    previousState: "",
+    gameState : "", // "MENU", "PLAYING", "END", "PAUSED"
 
     timerId : 0,
 
@@ -14,10 +15,17 @@
         if (state === "PLAYING") {
             this.timerId = setInterval(function () { this.time = this.time + 1; }.bind(this), 1000)
         }
+        if (state === "PAUSED") {
+            if(this.gameState === "PLAYING")
+            {
+                if (this.timerId != 0)
+                    clearInterval(this.timerId);
+            }
+        }
 
+        this.previousState = this.gameState;
         this.gameState = state;
     },
-
     reset: function () {
         this.time = 0;
         this.coins = 0;

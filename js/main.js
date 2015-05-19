@@ -51,8 +51,12 @@
         renderer.setSize(GAME.width, GAME.height);
         div.appendChild(renderer.domElement);
 
-
-
+        window.onblur = function() {
+            Game.setGameState("PAUSED");
+        };
+        window.onfocus = function() {
+            Game.setGameState(Game.previousState);
+        };
 
         // create scene and set up all the 3D objects in the scene
         scene = new THREE.Scene();
@@ -68,7 +72,7 @@
 
         obstacleHndlr = new obstacleHandler(scene, player);
 
-        Game.setGameState("MENU");
+        Game.setGameState("PLAYING");
         // get started!
         update();
     }

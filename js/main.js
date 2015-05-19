@@ -28,7 +28,7 @@
     // scene graph variables
     var canvas, ctx;
     var renderer, scene, camera, pointLight, spotLight;
-    var powerUp, mirrorCubeCamera, plane, planeLeft, planeRight;
+    var powerUp, mirrorCubeCamera, plane, planeLeft, planeRight, planeTop;
 
     var player = new Player(0, 0);
     var obstacleHndlr = undefined;
@@ -108,35 +108,39 @@
         /* mirrorCubeCamera = new THREE.CubeCamera(0.1, 5000, 500);
          scene.add(mirrorCubeCamera);
          var mirrorCubeMaterial = new THREE.MeshBasicMaterial({ envMap: mirrorCubeCamera.renderTarget });*/
-        var planeG = new THREE.PlaneGeometry(100,100);
-        plane = new THREE.Mesh(planeG, MATERIAL.planeMaterial);
+         var planeGX = new THREE.PlaneGeometry(100, 500);
+        var planeGY = new THREE.PlaneGeometry(500, 100);
+        plane = new THREE.Mesh(planeGX, MATERIAL.planeMaterial);
         plane.rotation.x = dtr(-90);
         plane.receiveShadow = true;
         plane.position.x = 0;
-        plane.position.y = 0;
+        plane.position.y = -10;
         plane.position.z = -50
         scene.add(plane);
 
-        planeLeft = new THREE.Mesh(planeG, MATERIAL.planeMaterial);
+        planeLeft = new THREE.Mesh(planeGY, MATERIAL.planeMaterial);
         planeLeft.rotation.y = dtr(90);
         planeLeft.receiveShadow = true;
         planeLeft.position.x = -20;
         planeLeft.position.y = 0;
         planeLeft.position.z = -50;
-        // scene.add(planeLeft);
+         scene.add(planeLeft);
 
-        planeRight = new THREE.Mesh(planeG, MATERIAL.planeMaterial);
+        planeRight = new THREE.Mesh(planeGY, MATERIAL.planeMaterial);
         planeRight.rotation.y = dtr(-90);
         planeRight.receiveShadow = true;
-        planeRight.position.x = 35;
+        planeRight.position.x = 30;
         planeRight.position.y = 0;
         planeRight.position.z = -50;
-        //scene.add(planeRight);
+        scene.add(planeRight);
 
-        var powerUpG = new THREE.IcosahedronGeometry(2, 0);
-        powerUp = new THREE.Mesh(powerUpG, MATERIAL.collectableMaterial);
-        powerUp.position.set(25,5,-50);
-        scene.add(powerUp);
+        planeTop = new THREE.Mesh(planeGX, MATERIAL.planeMaterial);
+        planeTop.rotation.x = dtr(90);
+        planeTop.receiveShadow = true;
+        planeTop.position.x = 0;
+        planeTop.position.y = 30;
+        planeTop.position.z = -50
+        scene.add(planeTop);
 
 
         //axes for reference

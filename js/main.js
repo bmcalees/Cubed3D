@@ -201,7 +201,7 @@
 
         camera.rotation.x = dtr(-0.01 * (player.cube.position.y));
 
-        powerUp.rotation.y += 0.05;
+       // powerUp.rotation.y += 0.05;
 
         obstacleHndlr.generate(); // generates enemy based on obstacleHndlr.spawnChance
         obstacleHndlr.updateObstacles();    // updates obstacles locations

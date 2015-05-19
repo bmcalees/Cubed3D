@@ -237,37 +237,33 @@ document.body.onload = setup;
 }())
 	
 </script>
-    <div id='gameDiv'style="position: absolute; left:0px; top:0px"></div>
-    <span id="lives" style="color:white; position:absolute; left:50px; height:50px;"></span>
-    <span id="time" style="color:white; position:absolute; left:200px; height:50px;"></span>
-    <span id="coins" style="color:white; position:absolute; left:350px; height:50px;"></span>
-	
+    
     <!-- HUD -->
     <!-- Top row -->
-    <img id="grd_1-1" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1000px; top:50px;" />
-    <img id="grd_1-2" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1070px; top:50px;" />
-    <img id="grd_1-3" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1140px; top:50px;" />
+    <img id="grd_1-1" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:240px; top:50px;" />
+    <img id="grd_1-2" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:170px; top:50px;" />
+    <img id="grd_1-3" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:100px; top:50px;" />
     <!-- Middle row -->
-    <img id="grd_2-1" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1000px; top:120px;" />
-    <img id="grd_2-2" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1070px; top:120px;" />
-    <img id="grd_2-3" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1140px; top:120px;" />
+    <img id="grd_2-1" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:240px; top:120px;" />
+    <img id="grd_2-2" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:170px; top:120px;" />
+    <img id="grd_2-3" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:100px; top:120px;" />
     <!-- Bottom row -->
-    <img id="grd_3-1" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1000px; top:190px;" />
-    <img id="gri3-2" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1070px; top:190px;" />
-    <img id="pos3-1" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1140px; top:190px;" />
+    <img id="grd_3-1" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:240px; top:190px;" />
+    <img id="gri3-2" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:170px; top:190px;" />
+    <img id="pos3-1" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:100px; top:190px;" />
     <!-- Occupied grid -->
     <!-- Top row -->
-    <img id="grid_2-0" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1000px; top:50px; display:none;" />
-    <img id="grid_2-1" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1070px; top:50px; display:none;" />
-    <img id="grid_2-2" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1140px; top:50px; display:none;" />
+    <img id="grid_2-0" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:240px; top:50px; display:none;" />
+    <img id="grid_2-1" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:170px; top:50px; display:none;" />
+    <img id="grid_2-2" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:100px; top:50px; display:none;" />
     <!-- Middle row -->
-    <img id="grid_1-0" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1000px; top:120px; display:none;" />
-    <img id="grid_1-1" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1070px; top:120px;" />
-    <img id="grid_1-2" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1140px; top:120px; display:none;" />
+    <img id="grid_1-0" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:240px; top:120px; display:none;" />
+    <img id="grid_1-1" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:170px; top:120px; " />
+    <img id="grid_1-2" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:100px; top:120px; display:none;" />
     <!-- Bottom row -->
-    <img id="grid_0-0" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1000px; top:190px; display:none;" />
-    <img id="grid_0-1" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1070px; top:190px; display:none;" />
-    <img id="grid_0-2" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; left:1140px; top:190px; display:none;" />
+    <img id="grid_0-0" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:240px; top:190px; display:none;" />
+    <img id="grid_0-1" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:170px; top:190px; display:none;" />
+    <img id="grid_0-2" class="occupied" src="img/SpaceUnoccupied.png" width="60" style="position:absolute; float:right; right:100px; top:190px; display:none;" />
 
     <span id="lives" style="color:white; position:absolute; left:50px; height:50px; top:50px;"></span>
     <span id="time" style="color:white; position:absolute; left:200px; height:50px; top:50px;"></span>

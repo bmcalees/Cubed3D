@@ -34,7 +34,7 @@
     var obstacleHndlr = undefined;
 
     // html tag references
-    var livesTag, coinTag, timeTag;
+    var livesTag, coinTag, timeTag, hitEffect;
 
     //2D array veriable
     var currentGrid = [];
@@ -46,6 +46,7 @@
         livesTag = document.getElementById("lives");
         coinTag = document.getElementById("coins");
         timeTag = document.getElementById("time");
+        hitEffect = document.getElementById("onHit");
 
         renderer = new THREE.WebGLRenderer();
         renderer.setSize(GAME.width, GAME.height);
@@ -70,7 +71,7 @@
         // toggle full-screen on given key press
         THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
 
-        obstacleHndlr = new obstacleHandler(scene, player);
+        obstacleHndlr = new obstacleHandler(scene, player, hitEffect);
 
         Game.setGameState("PLAYING");
         // get started!

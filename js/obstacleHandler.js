@@ -6,7 +6,7 @@
 // handling hit detection of player and obstacle
 // increasing game difficulty over time
 
-function obstacleHandler(scene, player, camera, renderer) {
+function obstacleHandler(scene, player, hitEffect,camera, renderer) {
     var self = this;
     self.obstacles = [];
     self.coins = [];
@@ -41,8 +41,11 @@ function obstacleHandler(scene, player, camera, renderer) {
                 if (obstacle.xPos == player.xPos && obstacle.yPos == player.yPos) { // player ran into a cube
 
                     Game.lives--;
+					hitEffect.style.display = "block";
+					
                     if (Game.lives == 0) {
                         Game.setGameState("END");
+						hitEffect.style.display = "none";
                     }
                     scene.remove(obstacle.cube);
                     self.obstacles.splice(i, 1);

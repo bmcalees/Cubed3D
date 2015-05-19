@@ -10,17 +10,20 @@ function obstacleHandler(scene, player, hitEffect) {
     var self = this;
     self.obstacles = [];
     self.coins = [];
-    self.spawnChance = 2; // out of 100
+    self.spawnChance = 1; // out of 100
     self.hitEffectTimer = 0;
 
     self.generate = function () { // adds obstacles - called in main update()
-        var rndm = Math.random();
-        if (rndm < self.spawnChance / 100) {
-            self.obstacles.push(new Obstacle(scene));
-        }
-        if (rndm < (self.spawnChance/200))
+        if(Game.gameState == "PLAYING")
         {
-            self.coins.push(new Coin(scene));
+            var rndm = Math.random();
+            if (rndm < self.spawnChance / 100) {
+                self.obstacles.push(new Obstacle(scene));
+            }
+            if (rndm < (self.spawnChance/200))
+            {
+                self.coins.push(new Coin(scene));
+            }
         }
     };
 
@@ -28,7 +31,7 @@ function obstacleHandler(scene, player, hitEffect) {
 
         if (self.spawnChance < 20) {
             if (Game.time % 10 === 0) {
-                self.spawnChance = (Game.time / 6) + 3;
+                self.spawnChance = (Game.time / 6) + 2;
             }
         }
 
@@ -49,6 +52,7 @@ function obstacleHandler(scene, player, hitEffect) {
                         if (Game.lives == 0) {
                             Game.setGameState("END");
                             hitEffect.style.display = "none";
+                            self.spawnChance = 1;
                             self.cleanObstacles();
                         }
                         scene.remove(obstacle.cube);

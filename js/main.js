@@ -71,9 +71,16 @@
         // toggle full-screen on given key press
         THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
 
+        //create new obstacle handler
         obstacleHndlr = new obstacleHandler(scene, player, hitEffect);
 
-        Game.setGameState("PLAYING");
+        // set starting game state
+        Game.setGameState("MENU");
+        document.getElementById("startBtn").addEventListener("click", function() {
+            Game.setGameState("PLAYING");
+            Game.reset();
+        });
+
         // get started!
         update();
     }

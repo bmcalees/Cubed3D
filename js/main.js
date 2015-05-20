@@ -80,6 +80,8 @@
         document.getElementById("startBtn").addEventListener("click", function() {
             Game.reset();
             Game.setGameState("PLAYING");
+            obstacleHndlr.cleanObstacles();
+            obstacleHndlr = new obstacleHandler(scene, player, hitEffect);
         });
 
         // get started!
@@ -263,9 +265,9 @@
         obstacleHndlr.updateObstacles();    // updates obstacles locations
         obstacleHndlr.handleDifficulty();   // updates spawn rates
 
-        livesTag.innerHTML = "Lives: " + Game.lives;
-        coinTag.innerHTML = "Coins: " + Game.coins;
-        timeTag.innerHTML = "Time: " + Game.time;
+        livesTag.innerHTML = "Lives <br /><br />&nbsp;&nbsp;&nbsp;" + Game.lives;
+        timeTag.innerHTML = "Time <br /><br />&nbsp;&nbsp;" + Game.time;
+        coinTag.innerHTML = "Coins <br /><br />&nbsp;&nbsp;&nbsp;" + Game.coins;
 
 		if (lineTimer == 20) {
             moveLines();

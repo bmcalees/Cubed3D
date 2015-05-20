@@ -4,9 +4,10 @@
     self.yPos = Math.floor(Math.random() * 3);
 
     self.cubeGeo = new THREE.BoxGeometry(3, 3, 3);
-    self.cube1Texture = new THREE.ImageUtils.loadTexture('img/blockMat.png');
-    self.cube2Texture = new THREE.ImageUtils.loadTexture('img/blockMat2.png');
-    self.cube3Texture = new THREE.ImageUtils.loadTexture('img/blockMat3.png');
+    self.cube1Texture = THREE.ImageUtils.loadTexture('img/blockMat.png');
+    self.cube2Texture = THREE.ImageUtils.loadTexture('img/blockMat2.png');
+    self.cube3Texture = THREE.ImageUtils.loadTexture('img/blockMat3.png');
+	
     self.cubeMat = undefined;
     if (self.xPos === 0) {
         self.cubeMat = new THREE.MeshLambertMaterial(

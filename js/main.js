@@ -30,7 +30,7 @@
     var renderer, scene, camera, pointLight, spotLight;
     var powerUp, mirrorCubeCamera, plane, planeLeft, planeRight, planeTop;
     var lines = [], xPosArray = [-15, 28, -15, 28, -15, 28], lineTimer = 0;
-
+	
     var player = new Player(0, 0);
     var obstacleHndlr = undefined;
 

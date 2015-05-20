@@ -3,8 +3,9 @@ function Coin(scene) {
 
     self.xPos = Math.floor(Math.random() * 3);
     self.yPos = Math.floor(Math.random() * 3);
-
-    self.coinTexture = new THREE.ImageUtils.loadTexture('img/coinMat.png');
+	
+    self.coinTexture = THREE.ImageUtils.loadTexture('img/coinMat.png');
+	
     self.coinMat = new THREE.MeshLambertMaterial(
     {
         map: self.coinTexture

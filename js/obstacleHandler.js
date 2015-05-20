@@ -8,6 +8,8 @@
 // adding on hit Audio
 // adding on hit HTML tag display effects
 
+"use strict";
+
 function obstacleHandler(scene, player, hitEffect, coinEffect, coinEffectImg) {
     var self = this;
     self.obstacles = [];
@@ -48,12 +50,17 @@ function obstacleHandler(scene, player, hitEffect, coinEffect, coinEffectImg) {
 
                 if (obstacle.cube.position.z > 0 - player.zLength) {  // INFO: player is located at 0 on the Z axis
                     if (obstacle.xPos == player.xPos && obstacle.yPos == player.yPos && Game.gameState != "MENU" && Game.gameState != "PAUSED" && self.hitEffectTimer <= 0) { // player ran into a cube
-                        collisionAudio.volume = 0.5;
+                        
+						//play audio
+						collisionAudio.volume = 0.5;
                         collisionAudio.play();
+						
+						//take away lives and show hit effect
                         Game.lives--;
                         hitEffect.style.display = "block";
                         self.hitEffectTimer = 100;
-
+						
+						//if there are no more lives, Game OVER
                         if (Game.lives == 0) {
                             Game.setGameState("END");
                             hitEffect.style.display = "none";
@@ -84,13 +91,17 @@ function obstacleHandler(scene, player, hitEffect, coinEffect, coinEffectImg) {
 
                 if (currentCoin.coin.position.z > 0 - player.zLength) {  // INFO: player is located at 0 on the Z axis
                     if (currentCoin.xPos == player.xPos && currentCoin.yPos == player.yPos && Game.gameState != "MENU" && Game.gameState != "PAUSED" && self.hitEffectTimer <= 0) { // player ran into a cube
-                        collectAudio.volume = 0.3;
+                        //play audio
+						collectAudio.volume = 0.3;
                         collectAudio.play();
+						
+						//add to total coin amount and display coin effects
                         Game.coins++;
                         coinEffect.style.display = "block";
                         //coinEffectImg.style.display = "block";
+						
                         self.coinEffectTimer = 70;
-                        self.coinImgTimer = 50;
+                        //self.coinImgTimer = 50;
                         scene.remove(currentCoin.coin);
                         self.coins.splice(i, 1);
                     }
@@ -109,7 +120,8 @@ function obstacleHandler(scene, player, hitEffect, coinEffect, coinEffectImg) {
                 }
             }
         }
-
+		
+		//add a fade away effect to the on hit effects 
         if(self.hitEffectTimer > 0)
         {
             self.hitEffectTimer--;

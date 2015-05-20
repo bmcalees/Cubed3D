@@ -1,4 +1,13 @@
+//Main variables, render, html references, and models such as the camera, lighting, and line effects
+//original structure based upon pong exercise but majority of actual content inside structure is
+//done by us.
+
+//Audio files are from FreeSounds.org and http://sampleswap.org/mp3/creative-commons/free-music.php
+//Font was downloaded from daFont, textures were all created by us and code snippets are commented in
+//sections of use.
+
 "use strict";
+
 (function(){
     // SCOPE CONSTANTS
 
@@ -36,7 +45,7 @@
     // html tag references
     var livesTag, coinTag, timeTag, hitEffect, coinEffect, coinEffectImg;
 
-    //2D array veriable
+    //2D array variable
     var currentGrid = [];
 
     function setup(){
@@ -115,7 +124,9 @@
     }
 
 	 function createModels(){
-
+		
+		//4 planes made to look like a tunnel
+		
         /* mirrorCubeCamera = new THREE.CubeCamera(0.1, 5000, 500);
          scene.add(mirrorCubeCamera);
          var mirrorCubeMaterial = new THREE.MeshBasicMaterial({ envMap: mirrorCubeCamera.renderTarget });*/
@@ -153,16 +164,20 @@
         planeTop.position.z = -50
         scene.add(planeTop);
 
+		//possible powerup shape for the future
         var powerUpG = new THREE.IcosahedronGeometry(2, 0);
         powerUp = new THREE.Mesh(powerUpG, MATERIAL.collectableMaterial);
         powerUp.position.set(25, 5, -50);
         //scene.add(powerUp);
-
+		
+		//special matrial using changing colors
+		//this code is based off help from https://stemkoski.github.io/Three.js/Vertex-Colors.html and http://threejs.org/examples/ on line geometry
         var material = new THREE.LineBasicMaterial({
             vertexColors: THREE.VertexColors
         });
         var color;
-
+		
+		//creating  line sections each with 7 vertices
         for (var j = 0; j < 6; j++) {
             var lineInfo = { lineGeo: new THREE.Geometry(), lineArray: [] }
             lines.push(lineInfo);
@@ -176,6 +191,7 @@
                            new THREE.Vector3(lineInfo.lineArray[i].x, lineInfo.lineArray[i].y, lineInfo.lineArray[i].z));
             }
             
+			//randomize color and creatign appreance of movement by makign previous colors the same and the new color
             for (var i = 0; i < lineInfo.lineGeo.vertices.length; i += 2) {
                 color = new THREE.Color(0xffffff);
                 color.setHex(Math.random() * 0xffffff);
@@ -195,6 +211,7 @@
 		scene.add(player.cube);
     }
 
+	//randomizes positions of line vertices based on y and z axis with a fixed x
     function createVertex(xPos) {
         var lineX = xPos;
         var lineY = Math.random() * 25 - 5;
@@ -207,6 +224,7 @@
         return vertex;
     }
 
+	//each time this is run, a new vertex is added to the array and the oldest is shifted out
     function moveLines() {
         for (var i = 0; i < lines.length; i++) {
             lines[i].lineArray.push(createVertex(xPosArray[i]));
@@ -218,6 +236,7 @@
         }
     }
 
+	//create lighting effects for maximum cube visualization without too much brightness
     function createLights(){
 
         var spotLight = new THREE.SpotLight(0xFFFFFF);
@@ -255,7 +274,8 @@
         // schedule next update
         requestAnimationFrame(update);
         // console.log(player.cube.position.y);
-
+		
+		//camera smoothly follows the player, some of this code is from the Pong exercise
         camera.position.x += (player.cube.position.x - camera.position.x) * 0.1;
         camera.position.y += (player.cube.position.y - camera.position.y) * 0.1;
         camera.position.z = player.cube.position.z;
@@ -269,7 +289,8 @@
         livesTag.innerHTML = "Lives: " + Game.lives;
         coinTag.innerHTML = "Coins: " + Game.coins;
         timeTag.innerHTML = "Time: " + Game.time;
-
+		
+		//move the lines only every 20 updates so they are not too fast and distracting
 		if (lineTimer == 20) {
             moveLines();
             lineTimer = 0;

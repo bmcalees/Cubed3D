@@ -1,3 +1,5 @@
+//Found through the source code provided by https://stemkoski.github.io/Three.js/, used in his examples
+
 // This THREEx helper makes it easy to handle window resize.
 // It will update renderer and camera when window is resized.
 //
@@ -10,7 +12,7 @@
 // **Step 2**: Start updating renderer and camera
 //
 // ```windowResize.stop()```
-// # Code
+// 
 
 //
 

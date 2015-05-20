@@ -1,3 +1,7 @@
+//Testing code
+
+"use strict";
+
 var draw = {
     Resizer: function(ctx){
         ctx.canvas.width  = window.innerWidth;

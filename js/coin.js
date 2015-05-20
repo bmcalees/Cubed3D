@@ -1,3 +1,8 @@
+//this code creates the coin the will be created within the obstacles, the position given to it is random 
+//and and code for the shape was inspired from https://stemkoski.github.io/Three.js/Shapes.html
+
+"use strict";
+
 function Coin(scene) {
     var self = this;
 

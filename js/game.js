@@ -1,11 +1,15 @@
-﻿var Game = {
+﻿//game object holds all necessary information regarding the game elements including the timer, score, lives, and coins
+//It also includes game state changes to effectively change from the start to end screen during play.
+
+var Game = {
     time : 0,
     coins: 0,
     lives: 3,
     previousState: "",
     gameState : "", // "MENU", "PLAYING", "END", "PAUSED"
     timerId : 0,
-
+	
+	//utilizes game states to shift from start, playing , to end
     setGameState: function (state) {  // To set a gamestate always go through this function to ensure dependent properties are handled
         if(this.gameState === "MENU" && state != "MENU") {
             $('.menu').hide();

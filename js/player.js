@@ -1,4 +1,12 @@
-﻿function Player() {
+﻿// This file contains the player cube creation (not seen on screen),
+//keeps track of player position in the grid, and monitors keyboard
+//events 
+//Keyboard code is based off of Example code from 3DPong but includes 
+//grid positioning from our code
+
+"use strict";
+
+function Player() {
     var self = this;
     self.xPos = 1;
     self.yPos = 1;
@@ -6,7 +14,8 @@
     self.xWidth = 3;
     self.yHeight = 3;
     self.zLength = 3;
-
+	
+	//create cube geometry and material
     self.cubeGeo = new THREE.BoxGeometry(self.xWidth, self.yHeight, self.zLength);
     self.cubeMat = new THREE.MeshLambertMaterial(
 	{

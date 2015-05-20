@@ -1,3 +1,5 @@
+//Found through source code provided by https://stemkoski.github.io/Three.js/, used in his examples
+
 // This THREEx helper makes it easy to handle the fullscreen API
 // * it hides the prefix for each browser
 // * it hides the little discrepencies of the various vendor API

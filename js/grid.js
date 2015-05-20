@@ -1,6 +1,9 @@
 ﻿//function creates full 2D Array 
 //currently it is 3x3 with each object having a position
 // x and y both increase by 5 and we will need to figure out actual sizes for this later
+
+"use strict";
+
 var currentGrid = [];
 
 (function () {

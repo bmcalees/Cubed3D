@@ -14,7 +14,7 @@ function obstacleHandler(scene, player, hitEffect) {
     self.hitEffectTimer = 0;
 
     self.generate = function () { // adds obstacles - called in main update()
-        if(Game.gameState == "PLAYING")
+        if(Game.gameState != "END")
         {
             var rndm = Math.random();
             if (rndm < self.spawnChance / 100) {

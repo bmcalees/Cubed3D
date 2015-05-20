@@ -4,9 +4,10 @@ function Coin(scene) {
     self.xPos = Math.floor(Math.random() * 3);
     self.yPos = Math.floor(Math.random() * 3);
 
+    self.coinTexture = new THREE.ImageUtils.loadTexture('img/coinMat.png');
     self.coinMat = new THREE.MeshLambertMaterial(
     {
-        color: 0xCC9900
+        map: self.coinTexture
     });
 
     self.coinG = new THREE.TorusGeometry(1, 0.5, 8, 4);

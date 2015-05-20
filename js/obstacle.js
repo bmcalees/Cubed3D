@@ -4,21 +4,24 @@
     self.yPos = Math.floor(Math.random() * 3);
 
     self.cubeGeo = new THREE.BoxGeometry(3, 3, 3);
+    self.cube1Texture = new THREE.ImageUtils.loadTexture('img/blockMat.png');
+    self.cube2Texture = new THREE.ImageUtils.loadTexture('img/blockMat2.png');
+    self.cube3Texture = new THREE.ImageUtils.loadTexture('img/blockMat3.png');
     self.cubeMat = undefined;
     if (self.xPos === 0) {
         self.cubeMat = new THREE.MeshLambertMaterial(
         {
-            color: 0x0000ff
+           map:self.cube1Texture
         });
     } else if (self.xPos === 1) {
         self.cubeMat = new THREE.MeshLambertMaterial(
         {
-            color: 0x00ccff
+            map: self.cube2Texture
         });
     } else if (self.xPos === 2) {
         self.cubeMat = new THREE.MeshLambertMaterial(
         {
-            color: 0xcc00ff
+            map: self.cube3Texture
         });
     }
     self.cube = new THREE.Mesh(self.cubeGeo, self.cubeMat);

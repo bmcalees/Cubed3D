@@ -29,6 +29,7 @@
     var canvas, ctx;
     var renderer, scene, camera, pointLight, spotLight;
     var powerUp, mirrorCubeCamera, plane, planeLeft, planeRight, planeTop;
+    var lines = [], xPosArray = [-15, 28, -15, 28, -12, 25, ], lineTimer = 0;
 
     var player = new Player(0, 0);
     var obstacleHndlr = undefined;
@@ -110,12 +111,12 @@
 
     }
 
-    function createModels(){
+	 function createModels(){
 
         /* mirrorCubeCamera = new THREE.CubeCamera(0.1, 5000, 500);
          scene.add(mirrorCubeCamera);
          var mirrorCubeMaterial = new THREE.MeshBasicMaterial({ envMap: mirrorCubeCamera.renderTarget });*/
-         var planeGX = new THREE.PlaneGeometry(100, 500);
+        var planeGX = new THREE.PlaneGeometry(100, 500);
         var planeGY = new THREE.PlaneGeometry(500, 100);
         plane = new THREE.Mesh(planeGX, MATERIAL.planeMaterial);
         plane.rotation.x = dtr(-90);
@@ -123,7 +124,7 @@
         plane.position.x = 0;
         plane.position.y = -10;
         plane.position.z = -50
-        scene.add(plane);
+       // scene.add(plane);
 
         planeLeft = new THREE.Mesh(planeGY, MATERIAL.planeMaterial);
         planeLeft.rotation.y = dtr(90);
@@ -131,7 +132,7 @@
         planeLeft.position.x = -20;
         planeLeft.position.y = 0;
         planeLeft.position.z = -50;
-         scene.add(planeLeft);
+        //scene.add(planeLeft);
 
         planeRight = new THREE.Mesh(planeGY, MATERIAL.planeMaterial);
         planeRight.rotation.y = dtr(-90);
@@ -139,7 +140,7 @@
         planeRight.position.x = 30;
         planeRight.position.y = 0;
         planeRight.position.z = -50;
-        scene.add(planeRight);
+        //scene.add(planeRight);
 
         planeTop = new THREE.Mesh(planeGX, MATERIAL.planeMaterial);
         planeTop.rotation.x = dtr(90);
@@ -147,19 +148,71 @@
         planeTop.position.x = 0;
         planeTop.position.y = 30;
         planeTop.position.z = -50
-        scene.add(planeTop);
+        //scene.add(planeTop);
 
         var powerUpG = new THREE.IcosahedronGeometry(2, 0);
         powerUp = new THREE.Mesh(powerUpG, MATERIAL.collectableMaterial);
-        powerUp.position.set(25,5,-50);
-        scene.add(powerUp);
+        powerUp.position.set(25, 5, -50);
+        //scene.add(powerUp);
 
+        var material = new THREE.LineBasicMaterial({
+            vertexColors: THREE.VertexColors
+        });
+        var color;
+
+        for (var j = 0; j < 6; j++) {
+            var lineInfo = { lineGeo: new THREE.Geometry(), lineArray: [] }
+            lines.push(lineInfo);
+
+            for (var i = 0; i < 5; i++) {
+                lineInfo.lineArray.push(createVertex(xPosArray[j]));
+            }
+
+            for (var i = 0; i < lineInfo.lineArray.length; i++) {
+                lineInfo.lineGeo.vertices.push(
+                           new THREE.Vector3(lineInfo.lineArray[i].x, lineInfo.lineArray[i].y, lineInfo.lineArray[i].z));
+            }
+            
+            for (var i = 0; i < lineInfo.lineGeo.vertices.length; i += 2) {
+                color = new THREE.Color(0xffffff);
+                color.setHex(Math.random() * 0xffffff);
+                lineInfo.lineGeo.colors[i] = color;
+                lineInfo.lineGeo.colors[i + 1] = lineInfo.lineGeo.colors[i];
+            }
+
+            lineInfo.lineGeo.verticesNeedUpdate = true;
+            var line = new THREE.Line(lineInfo.lineGeo, material);
+            scene.add(line);
+        }        
 
         //axes for reference
         var axes = new THREE.AxisHelper(20);
         //scene.add(axes);
+		
+		scene.add(player.cube);
+    }
 
-        scene.add(player.cube);
+    function createVertex(xPos) {
+        var lineX = xPos;
+        var lineY = Math.random() * 25 - 5;
+        var lineZ = -10 + (Math.random() * -200);
+
+        var vertex = { x: lineX, y: lineY, z: lineZ };
+
+        //console.log(lineY, lineZ);
+
+        return vertex;
+    }
+
+    function moveLines() {
+        for (var i = 0; i < lines.length; i++) {
+            lines[i].lineArray.push(createVertex(xPosArray[i]));
+            lines[i].lineArray.splice(0, 1);
+
+            lines[i].lineGeo.vertices.push(new THREE.Vector3(lines[i].lineArray[4].x, lines[i].lineArray[4].y, lines[i].lineArray[4].z));
+            lines[i].lineGeo.vertices.splice(0, 1);
+            lines[i].lineGeo.verticesNeedUpdate = true;
+        }
     }
 
     function createLights(){
@@ -206,8 +259,6 @@
 
         camera.rotation.x = dtr(-0.01 * (player.cube.position.y));
 
-       // powerUp.rotation.y += 0.05;
-
         obstacleHndlr.generate(); // generates enemy based on obstacleHndlr.spawnChance
         obstacleHndlr.updateObstacles();    // updates obstacles locations
         obstacleHndlr.handleDifficulty();   // updates spawn rates
@@ -216,6 +267,13 @@
         coinTag.innerHTML = "Coins: " + Game.coins;
         timeTag.innerHTML = "Time: " + Game.time;
 
+		if (lineTimer == 20) {
+            moveLines();
+            lineTimer = 0;
+        } else {
+            lineTimer++;
+        }
+		
         /*planeLeft.visible = false;
          mirrorCubeCamera.updateCubeMap(renderer, scene);
          planeLeft.visible = true;*/

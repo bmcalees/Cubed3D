@@ -59,6 +59,11 @@ function obstacleHandler(scene, player, hitEffect) {
                         scene.remove(obstacle.cube);
                         self.obstacles.splice(i, 1);
                     }
+                    else
+                    {
+                        scene.remove(obstacle.cube);
+                        self.obstacles.splice(i, 1);
+                    }
                 }
                 if (obstacle.cube.position.z > 0) {   //obstacle is off screen
                     scene.remove(obstacle.cube);
@@ -79,6 +84,11 @@ function obstacleHandler(scene, player, hitEffect) {
                         collectAudio.play();
                         Game.coins++;
 
+                        scene.remove(currentCoin.coin);
+                        self.coins.splice(i, 1);
+                    }
+                    else
+                    {
                         scene.remove(currentCoin.coin);
                         self.coins.splice(i, 1);
                     }

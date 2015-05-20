@@ -255,7 +255,7 @@
 
         camera.position.x += (player.cube.position.x - camera.position.x) * 0.1;
         camera.position.y += (player.cube.position.y - camera.position.y) * 0.1;
-        camera.position.z = player.cube.position.z -2;
+        camera.position.z = player.cube.position.z;
 
         camera.rotation.x = dtr(-0.01 * (player.cube.position.y));
 

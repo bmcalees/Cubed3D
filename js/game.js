@@ -4,7 +4,6 @@
     lives: 3,
     previousState: "",
     gameState : "", // "MENU", "PLAYING", "END", "PAUSED"
-
     timerId : 0,
 
     setGameState: function (state) {  // To set a gamestate always go through this function to ensure dependent properties are handled
@@ -31,11 +30,14 @@
             this.reset();
         }
         if (state === "PLAYING") {
-            this.timerId = setInterval(function () { this.time = this.time + 1; }.bind(this), 1000)
+            this.timerId = setInterval(function () { this.time = this.time + 1; }.bind(this), 1000);
+            backgroundAudio.volume = 0.3;
+            backgroundAudio.play();
         }
         if (state === "PAUSED") {
             if(this.gameState === "PLAYING")
             {
+                backgroundAudio.pause();
                 if (this.timerId != 0)
                     clearInterval(this.timerId);
             }
@@ -49,5 +51,8 @@
         this.coins = 0;
         this.timerId = 0;
         this.lives = 3;
+
+        backgroundAudio.currentTime = 0;
+        backgroundAudio.pause();
     }
 }

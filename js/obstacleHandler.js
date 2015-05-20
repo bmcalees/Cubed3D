@@ -73,7 +73,7 @@ function obstacleHandler(scene, player, hitEffect) {
                 var currentCoin = self.coins[i];
 
                 if (currentCoin.coin.position.z > 0 - player.zLength) {  // INFO: player is located at 0 on the Z axis
-                    if (currentCoin.xPos == player.xPos && currentCoin.yPos == player.yPos) { // player ran into a cube
+                    if (currentCoin.xPos == player.xPos && currentCoin.yPos == player.yPos && Game.gameState != "MENU" && Game.gameState != "PAUSED" && self.hitEffectTimer <= 0) { // player ran into a cube
 
                         Game.coins++;
 

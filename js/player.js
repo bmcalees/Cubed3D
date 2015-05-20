@@ -28,8 +28,9 @@
     }
 
     function updateHUD() {
-        $(".occupied").hide();
-        $("#grid_"+self.xPos+"-"+self.yPos).show();
+
+        $(".occupied").css("opacity", 0.3);
+        $("#grid_"+self.xPos+"-"+self.yPos).css("opacity", 0.9);
     }
 
     function keyDown(event) {

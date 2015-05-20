@@ -27,7 +27,9 @@
             $(".end").show();
             var score = Math.round((this.coins / 4) * this.time);
             $("#score")[0].innerHTML = score.toString();
-            this.reset();
+
+            backgroundAudio.currentTime = 0;
+            backgroundAudio.pause();
         }
         if (state === "PLAYING") {
             this.timerId = setInterval(function () { this.time = this.time + 1; }.bind(this), 1000);

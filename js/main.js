@@ -2,7 +2,6 @@
 (function(){
     // SCOPE CONSTANTS
 
-    //bug where screen is moving with arrow keys if windowed
     var GAME = Object.freeze({
         width: window.innerWidth,
         height: window.innerHeight
@@ -35,24 +34,28 @@
     var obstacleHndlr = undefined;
 
     // html tag references
-    var livesTag, coinTag, timeTag, hitEffect;
+    var livesTag, coinTag, timeTag, hitEffect, coinEffect, coinEffectImg;
 
     //2D array veriable
     var currentGrid = [];
 
     function setup(){
 
-        // create a WebGL renderer
+        //HTML tag references
         var div = document.getElementById("gameDiv");
         livesTag = document.getElementById("lives");
         coinTag = document.getElementById("coins");
         timeTag = document.getElementById("time");
         hitEffect = document.getElementById("onHit");
+        coinEffect = document.getElementById("coinHit");
+        coinEffectImg = document.getElementById("coinHitImg");
 
+        // create a WebGL renderer
         renderer = new THREE.WebGLRenderer();
         renderer.setSize(GAME.width, GAME.height);
         div.appendChild(renderer.domElement);
 
+        //game pause effects
         window.onblur = function() {
             Game.setGameState("PAUSED");
         };
@@ -73,7 +76,7 @@
         THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
 
         //create new obstacle handler
-        obstacleHndlr = new obstacleHandler(scene, player, hitEffect);
+        obstacleHndlr = new obstacleHandler(scene, player, hitEffect, coinEffect, coinEffectImg);
 
         // set starting game state
         Game.setGameState("MENU");

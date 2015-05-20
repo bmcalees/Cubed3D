@@ -5,13 +5,17 @@
 // deleting the obstacle if it goes off screen
 // handling hit detection of player and obstacle
 // increasing game difficulty over time
+// adding on hit Audio
+// adding on hit HTML tag display effects
 
-function obstacleHandler(scene, player, hitEffect) {
+function obstacleHandler(scene, player, hitEffect, coinEffect, coinEffectImg) {
     var self = this;
     self.obstacles = [];
     self.coins = [];
     self.spawnChance = 1; // out of 100
     self.hitEffectTimer = 0;
+    self.coinEffectTimer = 0;
+    //self.coinImgTimer = 0;
 
     self.generate = function () { // adds obstacles - called in main update()
         if(Game.gameState != "END")
@@ -83,7 +87,10 @@ function obstacleHandler(scene, player, hitEffect) {
                         collectAudio.volume = 0.3;
                         collectAudio.play();
                         Game.coins++;
-
+                        coinEffect.style.display = "block";
+                        //coinEffectImg.style.display = "block";
+                        self.coinEffectTimer = 70;
+                        self.coinImgTimer = 50;
                         scene.remove(currentCoin.coin);
                         self.coins.splice(i, 1);
                     }
@@ -112,6 +119,22 @@ function obstacleHandler(scene, player, hitEffect) {
         {
             hitEffect.style.display = "none";
         }
+
+        if (self.coinEffectTimer > 0) {
+            self.coinEffectTimer--;
+            coinEffect.style.opacity = self.coinEffectTimer / 70;
+        }
+        else {
+            coinEffect.style.display = "none";
+        }
+
+       /* if (self.coinImgTimer > 0) {
+            self.coinImgTimer--;
+            coinEffectImg.style.opacity = self.coinEffectTimer / 50;
+        }
+        else {
+            coinEffectImg.style.display = "none";
+        }*/
     };
 
     // cleans obstacles and coins array on game over

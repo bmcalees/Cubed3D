@@ -126,7 +126,7 @@
         plane.position.x = 0;
         plane.position.y = -10;
         plane.position.z = -50
-       // scene.add(plane);
+        scene.add(plane);
 
         planeLeft = new THREE.Mesh(planeGY, MATERIAL.planeMaterial);
         planeLeft.rotation.y = dtr(90);
@@ -134,7 +134,7 @@
         planeLeft.position.x = -20;
         planeLeft.position.y = 0;
         planeLeft.position.z = -50;
-        //scene.add(planeLeft);
+        scene.add(planeLeft);
 
         planeRight = new THREE.Mesh(planeGY, MATERIAL.planeMaterial);
         planeRight.rotation.y = dtr(-90);
@@ -142,7 +142,7 @@
         planeRight.position.x = 30;
         planeRight.position.y = 0;
         planeRight.position.z = -50;
-        //scene.add(planeRight);
+        scene.add(planeRight);
 
         planeTop = new THREE.Mesh(planeGX, MATERIAL.planeMaterial);
         planeTop.rotation.x = dtr(90);
@@ -150,7 +150,7 @@
         planeTop.position.x = 0;
         planeTop.position.y = 30;
         planeTop.position.z = -50
-        //scene.add(planeTop);
+        scene.add(planeTop);
 
         var powerUpG = new THREE.IcosahedronGeometry(2, 0);
         powerUp = new THREE.Mesh(powerUpG, MATERIAL.collectableMaterial);

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="089cd9a5-4d1a-4ef6-8eb3-937dbc9e409e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/obstacleHandler.js" afterPath="$PROJECT_DIR$/js/obstacleHandler.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/game.js" afterPath="$PROJECT_DIR$/js/game.js" />
     </list>
     <ignored path="Cubed3D.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,16 +77,26 @@
         <entry file="file://$PROJECT_DIR$/js/game.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="57" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
+              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="obstacleHandler.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="documentation.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../Cubed3D docs/documentation.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4620853">
+              <caret line="40" column="75" selection-start-line="40" selection-start-column="75" selection-end-line="40" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="obstacleHandler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/obstacleHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6599287">
+            <state vertical-scroll-proportion="-39.444443">
               <caret line="92" column="48" selection-start-line="92" selection-start-column="48" selection-end-line="92" selection-end-column="48" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -155,10 +164,11 @@
       <list>
         <option value="$PROJECT_DIR$/js/draw.js" />
         <option value="$PROJECT_DIR$/js/player.js" />
-        <option value="$PROJECT_DIR$/js/game.js" />
         <option value="$PROJECT_DIR$/cube3.html" />
         <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/js/obstacleHandler.js" />
+        <option value="$PROJECT_DIR$/js/game.js" />
+        <option value="$PROJECT_DIR$/../Cubed3D docs/documentation.html" />
       </list>
     </option>
   </component>
@@ -170,6 +180,7 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="1" />
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="965" />
@@ -250,7 +261,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BitBall/client/js/utilities.js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Cubed3D docs/documentation.html" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
@@ -308,7 +319,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="965" extended-state="0" />
+    <frame x="1" y="23" width="1680" height="965" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -612,14 +623,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="57" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cube3.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.416666">
@@ -648,6 +651,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/obstacleHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-39.444443">
+          <caret line="92" column="48" selection-start-line="92" selection-start-column="48" selection-end-line="92" selection-end-column="48" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -656,13 +669,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/obstacleHandler.js">
+    <entry file="file://$PROJECT_DIR$/js/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6599287">
-          <caret line="92" column="48" selection-start-line="92" selection-start-column="48" selection-end-line="92" selection-end-column="48" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Cubed3D docs/documentation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4620853">
+          <caret line="40" column="75" selection-start-line="40" selection-start-column="75" selection-end-line="40" selection-end-column="75" />
+          <folding />
         </state>
       </provider>
     </entry>

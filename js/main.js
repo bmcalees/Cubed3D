@@ -29,7 +29,7 @@
     var canvas, ctx;
     var renderer, scene, camera, pointLight, spotLight;
     var powerUp, mirrorCubeCamera, plane, planeLeft, planeRight, planeTop;
-    var lines = [], xPosArray = [-15, 28, -15, 28, -12, 25, ], lineTimer = 0;
+    var lines = [], xPosArray = [-15, 28, -15, 28, -15, 28], lineTimer = 0;
 
     var player = new Player(0, 0);
     var obstacleHndlr = undefined;
@@ -80,8 +80,6 @@
         document.getElementById("startBtn").addEventListener("click", function() {
             Game.reset();
             Game.setGameState("PLAYING");
-            obstacleHndlr.cleanObstacles();
-            obstacleHndlr = new obstacleHandler(scene, player, hitEffect);
         });
 
         // get started!
@@ -166,7 +164,7 @@
             var lineInfo = { lineGeo: new THREE.Geometry(), lineArray: [] }
             lines.push(lineInfo);
 
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 7; i++) {
                 lineInfo.lineArray.push(createVertex(xPosArray[j]));
             }
 
@@ -197,7 +195,7 @@
     function createVertex(xPos) {
         var lineX = xPos;
         var lineY = Math.random() * 25 - 5;
-        var lineZ = -10 + (Math.random() * -200);
+        var lineZ = Math.random() * -300;
 
         var vertex = { x: lineX, y: lineY, z: lineZ };
 
@@ -211,7 +209,7 @@
             lines[i].lineArray.push(createVertex(xPosArray[i]));
             lines[i].lineArray.splice(0, 1);
 
-            lines[i].lineGeo.vertices.push(new THREE.Vector3(lines[i].lineArray[4].x, lines[i].lineArray[4].y, lines[i].lineArray[4].z));
+            lines[i].lineGeo.vertices.push(new THREE.Vector3(lines[i].lineArray[6].x, lines[i].lineArray[6].y, lines[i].lineArray[6].z));
             lines[i].lineGeo.vertices.splice(0, 1);
             lines[i].lineGeo.verticesNeedUpdate = true;
         }
@@ -265,9 +263,9 @@
         obstacleHndlr.updateObstacles();    // updates obstacles locations
         obstacleHndlr.handleDifficulty();   // updates spawn rates
 
-        livesTag.innerHTML = "Lives <br /><br />&nbsp;&nbsp;&nbsp;" + Game.lives;
-        timeTag.innerHTML = "Time <br /><br />&nbsp;&nbsp;" + Game.time;
-        coinTag.innerHTML = "Coins <br /><br />&nbsp;&nbsp;&nbsp;" + Game.coins;
+        livesTag.innerHTML = "Lives: " + Game.lives;
+        coinTag.innerHTML = "Coins: " + Game.coins;
+        timeTag.innerHTML = "Time: " + Game.time;
 
 		if (lineTimer == 20) {
             moveLines();

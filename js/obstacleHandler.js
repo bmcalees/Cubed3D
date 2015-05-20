@@ -44,7 +44,8 @@ function obstacleHandler(scene, player, hitEffect) {
 
                 if (obstacle.cube.position.z > 0 - player.zLength) {  // INFO: player is located at 0 on the Z axis
                     if (obstacle.xPos == player.xPos && obstacle.yPos == player.yPos && Game.gameState != "MENU" && Game.gameState != "PAUSED" && self.hitEffectTimer <= 0) { // player ran into a cube
-
+                        collisionAudio.volume = 0.5;
+                        collisionAudio.play();
                         Game.lives--;
                         hitEffect.style.display = "block";
                         self.hitEffectTimer = 100;
@@ -74,7 +75,8 @@ function obstacleHandler(scene, player, hitEffect) {
 
                 if (currentCoin.coin.position.z > 0 - player.zLength) {  // INFO: player is located at 0 on the Z axis
                     if (currentCoin.xPos == player.xPos && currentCoin.yPos == player.yPos && Game.gameState != "MENU" && Game.gameState != "PAUSED" && self.hitEffectTimer <= 0) { // player ran into a cube
-
+                        collectAudio.volume = 0.3;
+                        collectAudio.play();
                         Game.coins++;
 
                         scene.remove(currentCoin.coin);

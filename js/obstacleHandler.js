@@ -17,10 +17,11 @@ function obstacleHandler(scene, player, hitEffect, coinEffect, coinEffectImg) {
     self.spawnChance = 1; // out of 100
     self.hitEffectTimer = 0;
     self.coinEffectTimer = 0;
+    self.obstacleSpeed = 0.7; // Speed of obstacles
     //self.coinImgTimer = 0;
 
     self.generate = function () { // adds obstacles - called in main update()
-        if(Game.gameState != "END")
+        if(Game.gameState != "END" && Game.gameState != "PAUSED")
         {
             var rndm = Math.random();
             if (rndm < self.spawnChance / 100) {
@@ -35,16 +36,34 @@ function obstacleHandler(scene, player, hitEffect, coinEffect, coinEffectImg) {
 
     self.handleDifficulty = function () {   // increments spawn rate based on seconds passed in game
 
-        if (self.spawnChance < 20) {
+        if (self.spawnChance < 20 && Game.gameState == "PLAYING") {
             if (Game.time % 10 === 0) {
                 self.spawnChance = (Game.time / 6) + 2;
             }
+        }
+        if(Game.time == 10){
+            self.obstacleSpeed = 0.8;
+        }
+        if(Game.time == 20){
+            self.obstacleSpeed = 0.9;
+        }
+        if(Game.time == 30){
+            self.obstacleSpeed = 1;
+        }
+        if(Game.time == 50){
+            self.obstacleSpeed = 1.2;
+        }
+        if(Game.time == 80){
+            self.obstacleSpeed = 1.3;
+        }
+        if(Game.time == 120){
+            self.obstacleSpeed = 1.4;
         }
 
     };
 
     self.updateObstacles = function() {  // updates obstacles locations - called in main update()
-        if (Game.gameState != "END") {
+        if (Game.gameState != "END" && Game.gameState != "PAUSED") {
             for (var i = self.obstacles.length - 1; i >= 0; i--) { // have to loop backwards because deleting from array shifts array
                 var obstacle = self.obstacles[i];
 
@@ -81,7 +100,7 @@ function obstacleHandler(scene, player, hitEffect, coinEffect, coinEffectImg) {
                     self.obstacles.splice(i, 1);
                 }
                 else {  // move obstacle
-                    obstacle.updateLocation();
+                    obstacle.updateLocation(self.obstacleSpeed);
                 }
             }
 
@@ -116,7 +135,7 @@ function obstacleHandler(scene, player, hitEffect, coinEffect, coinEffectImg) {
                     self.coins.splice(i, 1);
                 }
                 else {  // move obstacle
-                    currentCoin.updateLocation();
+                    currentCoin.updateLocation(self.obstacleSpeed);
                 }
             }
         }

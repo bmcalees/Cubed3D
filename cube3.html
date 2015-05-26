@@ -4,7 +4,8 @@
 	<meta charset="utf-8" />
 		<title>Cube^3</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<style>
+	<style src="bootstrap/css/bootstrap.min.css" type="text/css"></style>
+    <style>
             body {
                 overflow:hidden;
             }
@@ -13,10 +14,12 @@
                 src: url(img/Polentical_Neon_Regular.ttf);
             }
 		</style>
+
 </head>
 <body>
     <script src="js/jquery-2.1.4.min.js"></script>
-	<script src='js/three.min.js'></script>
+    <script src="js/hammer.js"></script>
+    <script src='js/three.min.js'></script>
     <script src='js/grid.js'></script>
     <script src='js/game.js'></script>
 	<script src='js/keyboard.js'></script>
@@ -37,7 +40,7 @@
 	<h1 id="coinHit" style="color:#CC9900; position:absolute; float:left; left:340px; display:none; top:567px; font-family:PolenticalNeon; font-size: 40px;">+ 1</h1>
     
     <!-- Top row -->
-    <span id="grid_2-0" class="occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:260px; top:50px; opacity:0.3"></span>
+    <span id="grid_2-0" class="hidden-md hidden-lg occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:260px; top:50px; opacity:0.3"></span>
     <span id="grid_2-1" class="occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:190px; top:50px; opacity:0.3"></span>
     <span id="grid_2-2" class="occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:120px; top:50px; opacity:0.3"></span>
     <!-- Middle row -->
@@ -56,7 +59,7 @@
     <!-- Start & End game -->
     <div id="menu" class="menu" style="background-image:url('Menu.png'); width:300px; height:600px; position:absolute; left:42%; top:18%;"></div>
 
-    <div class="end" style="background-color:black; opacity: 0.7; position:absolute; left:0; top:0; height:100%; width:100%; display:none;"></div>
+    <div id="filter" class="end" style="background-color:black; opacity: 0.7; position:absolute; left:0; top:0; height:100%; width:100%; display:none;"></div>
     <h1 class="end" style="color:#EEEEEE; position:absolute; left:42%;top:40%; display:none; font-family:PolenticalNeon; font-size: 40px;">Your Score</h1>
     <h1 id="score" class="end" style="color:#EEEEEE; position:absolute; left:48%;top:50%; display:none; font-family:PolenticalNeon; font-size: 40px;"></h1>
 

@@ -29,18 +29,20 @@ var Game = {
             $("#startBtn").show();
             // do end of game score calculation
             $(".end").show();
-            var score = Math.round((this.coins / 4) * this.time);
+            var score = Math.round((this.time / 4) * this.coins);
             $("#score")[0].innerHTML = score.toString();
 
             backgroundAudio.currentTime = 0;
             backgroundAudio.pause();
         }
         if (state === "PLAYING") {
+            $(".end").hide();
             this.timerId = setInterval(function () { this.time = this.time + 1; }.bind(this), 1000);
             backgroundAudio.volume = 0.3;
             backgroundAudio.play();
         }
         if (state === "PAUSED") {
+            $("#filter").show();
             if(this.gameState === "PLAYING")
             {
                 backgroundAudio.pause();

@@ -21,20 +21,20 @@ function Obstacle(scene) {
     if (self.xPos === 0) {
         self.cubeMat = new THREE.MeshLambertMaterial(
         {
-           map:self.cube1Texture
-		   //color: 0xcc00ff
+           //map:self.cube1Texture
+		   color: 0xcc00ff
         });
     } else if (self.xPos === 1) {
         self.cubeMat = new THREE.MeshLambertMaterial(
         {
-            map: self.cube2Texture
-			//color: 0x00ccff
+            //map: self.cube2Texture
+			color: 0x00ccff
         });
     } else if (self.xPos === 2) {
         self.cubeMat = new THREE.MeshLambertMaterial(
         {
-            map: self.cube3Texture
-			//color: 0x0000cc
+            //map: self.cube3Texture
+			color: 'orange'
         });
     }
     self.cube = new THREE.Mesh(self.cubeGeo, self.cubeMat);
@@ -45,7 +45,7 @@ function Obstacle(scene) {
 
     scene.add(self.cube);
 
-    self.updateLocation = function() {
-        self.cube.position.z += 1;
+    self.updateLocation = function(speed) {
+        self.cube.position.z += speed;
     }
 }

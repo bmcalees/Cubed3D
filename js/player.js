@@ -30,8 +30,9 @@ function Player() {
 
     // handle movement
     window.addEventListener('keydown', function (event) { keyDown(event); }, false);
-    var hammertime = Hammer(document.body,{preventDefault: true}).on("swipe", function(event) {
-        alert('hello!');
+    var hammertime = Hammer(document.body,{preventDefault: true});
+    hammertime.on("swipe", function(event) {
+        swipe(event);
     });
 
     function updateLocation() {
@@ -62,6 +63,31 @@ function Player() {
             }
         }
         if (event.keyCode === 83 || event.keyCode === 40) { // Down
+            if (self.xPos > 0) {
+                self.xPos--;
+            }
+        }
+        updateLocation();
+        updateHUD();
+    }
+
+    function swipe(event) {
+        if (event.direction == Hammer.DIRECTION_LEFT) { // Left
+            if (self.yPos > 0) {
+                self.yPos--;
+            }
+        }
+        if (event.direction == Hammer.DIRECTION_RIGHT) { // Right
+            if (self.yPos < 2) {
+                self.yPos++;
+            }
+        }
+        if (event.direction == Hammer.DIRECTION_UP) { // Up
+            if (self.xPos < 2) {
+                self.xPos++;
+            }
+        }
+        if (event.direction == Hammer.DIRECTION_DOWN) { // Down
             if (self.xPos > 0) {
                 self.xPos--;
             }

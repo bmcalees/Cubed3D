@@ -36,6 +36,10 @@ function Player() {
     mainHammer.on("swipe", function(event) {
         swipe(event);
     });
+    mainHammer.add(new Hammer.Tap({event: 'tap', pointers:1, taps:1, interval:300, time:250,threshold:2,posThreshold:10 }));
+    mainHammer.on("tap", function(event) {
+        tap(event);
+    });
 
     function updateLocation() {
         self.cube.position.x = currentGrid[self.xPos][self.yPos].x;
@@ -91,6 +95,37 @@ function Player() {
             }
         }
         if (event.direction == Hammer.DIRECTION_DOWN) { // Down
+            //event.gesture.preventDefault();
+            if (self.xPos > 0) {
+                self.xPos--;
+            }
+        }
+        updateLocation();
+        updateHUD();
+    }
+    function tap(event) {
+        var centerY = $(window).height() / 2;
+        var centerX = $(window).width() / 2;
+        var tapX = event.center.pageX;
+        var tapY = event.center.pageY;
+
+        if (Math.abs(tapY - centerY) < Math.abs(tapX - centerX) && tapX < centerX) { // Left
+            if (self.yPos > 0) {
+                self.yPos--;
+            }
+        }
+        if (Math.abs(tapY - centerY) < Math.abs(tapX - centerX) && tapX > centerX) { // Right
+            if (self.yPos < 2) {
+                self.yPos++;
+            }
+        }
+        if (Math.abs(tapX - centerX) < Math.abs(tapY - centerY) && tapY > centerY) { // Up
+            //event.gesture.preventDefault();
+            if (self.xPos < 2) {
+                self.xPos++;
+            }
+        }
+        if (Math.abs(tapX - centerX) < Math.abs(tapY - centerY) && tapY < centerY) { // Down
             //event.gesture.preventDefault();
             if (self.xPos > 0) {
                 self.xPos--;

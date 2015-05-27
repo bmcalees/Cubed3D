@@ -106,8 +106,8 @@ function Player() {
     function tap(event) {
         var centerY = $(window).height() / 2;
         var centerX = $(window).width() / 2;
-        var tapX = event.center.pageX;
-        var tapY = event.center.pageY;
+        var tapX = event.center.x;
+        var tapY = event.center.y;
 
         if (Math.abs(tapY - centerY) < Math.abs(tapX - centerX) && tapX < centerX) { // Left
             if (self.yPos > 0) {

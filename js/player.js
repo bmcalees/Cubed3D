@@ -30,7 +30,7 @@ function Player() {
 
     // handle movement
     window.addEventListener('keydown', function (event) { keyDown(event); }, false);
-    var hammertime = Hammer(document.body).on("swipe", function(event) {
+    var hammertime = Hammer(document.body,{preventDefault: true}).on("swipe", function(event) {
         alert('hello!');
     });
 

@@ -119,13 +119,13 @@ function Player() {
                 self.yPos++;
             }
         }
-        if (Math.abs(tapX - centerX) < Math.abs(tapY - centerY) && tapY > centerY) { // Up
+        if (Math.abs(tapX - centerX) < Math.abs(tapY - centerY) && tapY < centerY) { // Up
             //event.gesture.preventDefault();
             if (self.xPos < 2) {
                 self.xPos++;
             }
         }
-        if (Math.abs(tapX - centerX) < Math.abs(tapY - centerY) && tapY < centerY) { // Down
+        if (Math.abs(tapX - centerX) < Math.abs(tapY - centerY) && tapY > centerY) { // Down
             //event.gesture.preventDefault();
             if (self.xPos > 0) {
                 self.xPos--;

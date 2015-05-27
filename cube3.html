@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 		<title>Cube^3</title>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-	<style src="bootstrap/css/bootstrap.min.css" type="text/css"></style>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
     <style>
             body {
                 overflow:hidden;
@@ -18,6 +18,7 @@
 </head>
 <body>
     <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/hammer.js"></script>
     <script src='js/three.min.js'></script>
     <script src='js/grid.js'></script>
@@ -40,21 +41,21 @@
 	<h1 id="coinHit" style="color:#CC9900; position:absolute; float:left; left:340px; display:none; top:567px; font-family:PolenticalNeon; font-size: 40px;">+ 1</h1>
     
     <!-- Top row -->
-    <span id="grid_2-0" class="hidden-md hidden-lg occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:260px; top:50px; opacity:0.3"></span>
-    <span id="grid_2-1" class="occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:190px; top:50px; opacity:0.3"></span>
-    <span id="grid_2-2" class="occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:120px; top:50px; opacity:0.3"></span>
+    <span id="grid_2-0" class="occupied hidden-xs" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:260px; top:50px; opacity:0.3"></span>
+    <span id="grid_2-1" class="occupied hidden-xs" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:190px; top:50px; opacity:0.3"></span>
+    <span id="grid_2-2" class="occupied hidden-xs" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:120px; top:50px; opacity:0.3"></span>
     <!-- Middle row -->
-    <span id="grid_1-0" class="occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:260px; top:120px; opacity:0.3"></span>
-    <span id="grid_1-1" class="occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:190px; top:120px; opacity:0.9"></span>
-    <span id="grid_1-2" class="occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:120px; top:120px; opacity:0.3"></span>
+    <span id="grid_1-0" class="occupied hidden-xs" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:260px; top:120px; opacity:0.3"></span>
+    <span id="grid_1-1" class="occupied hidden-xs" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:190px; top:120px; opacity:0.9"></span>
+    <span id="grid_1-2" class="occupied hidden-xs" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:120px; top:120px; opacity:0.3"></span>
     <!-- Bottom row -->
-    <span id="grid_0-0" class="occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:260px; top:190px; opacity:0.3"></span>
-    <span id="grid_0-1" class="occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:190px; top:190px; opacity:0.3"></span>
-    <span id="grid_0-2" class="occupied" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:120px; top:190px; opacity:0.3"></span>
+    <span id="grid_0-0" class="occupied hidden-xs" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:260px; top:190px; opacity:0.3"></span>
+    <span id="grid_0-1" class="occupied hidden-xs" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:190px; top:190px; opacity:0.3"></span>
+    <span id="grid_0-2" class="occupied hidden-xs" style="position:absolute; background-color:white; width:60px; height:60px; float:right; right:120px; top:190px; opacity:0.3"></span>
 
-    <span id="lives" style="color:white; position:absolute; float:left; left:150px; top:300px; font-family:PolenticalNeon; font-size:32px;"></span>
-    <span id="time" style="color:white; position:absolute; float:left; left:160px; top:450px; font-family:PolenticalNeon; font-size:32px;"></span>
-    <span id="coins" style="color:white; position:absolute; float:left; left:150px; top:600px; font-family:PolenticalNeon; font-size:32px;"></span>
+    <span id="lives" class="hidden-xs" style="color:white; position:absolute; float:left; left:150px; top:300px; font-family:PolenticalNeon; font-size:32px;"></span>
+    <span id="time" class="hidden-xs" style="color:white; position:absolute; float:left; left:160px; top:450px; font-family:PolenticalNeon; font-size:32px;"></span>
+    <span id="coins" class="hidden-xs" style="color:white; position:absolute; float:left; left:150px; top:600px; font-family:PolenticalNeon; font-size:32px;"></span>
 
     <!-- Start & End game -->
     <div id="menu" class="menu" style="background-image:url('Menu.png'); width:300px; height:600px; position:absolute; left:42%; top:18%;"></div>

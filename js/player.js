@@ -85,13 +85,13 @@ function Player() {
             }
         }
         if (event.direction == Hammer.DIRECTION_UP) { // Up
-            event.gesture.preventDefault()
+            event.gesture.preventDefault();
             if (self.xPos < 2) {
                 self.xPos++;
             }
         }
         if (event.direction == Hammer.DIRECTION_DOWN) { // Down
-            event.gesture.preventDefault()
+            event.gesture.preventDefault();
             if (self.xPos > 0) {
                 self.xPos--;
             }

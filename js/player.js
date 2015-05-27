@@ -33,6 +33,9 @@ function Player() {
     var options = {
         dragLockToAxis: true,
         dragBlockHorizontal: true,
+        dragMinDistance: 5,
+        swipeVelocityX: 0.3,
+        swipeVelocityY: 0.3,
         preventDefault: true
     }
     var hammertime = Hammer(document.body, options);

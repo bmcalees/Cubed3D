@@ -59,7 +59,7 @@
         coinEffect = document.getElementById("coinHit");
         coinEffectImg = document.getElementById("coinHitImg");
 
-        document.body.addEventListener('touchstart', function(e){ e.preventDefault(); });
+        document.body.addEventListener('touchmove', function(e){ e.preventDefault(); });
 
         // create a WebGL renderer
         renderer = new THREE.WebGLRenderer();

@@ -16,7 +16,7 @@ function Coin(scene) {
         //map: self.coinTexture
         color: 'yellow',
         transparent: true,
-        opacity: 0.7
+        opacity: 0.65
     });
 
     self.coinG = new THREE.TorusGeometry(0.5, 0.5, 8, 4);

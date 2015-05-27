@@ -51,9 +51,12 @@ function obstacleHandler(scene, player, hitEffect, coinEffect, coinEffectImg) {
             self.obstacleSpeed = 1;
         }
         if(Game.time == 50){
+            self.obstacleSpeed = 1.1;
+        }
+        if(Game.time == 70){
             self.obstacleSpeed = 1.2;
         }
-        if(Game.time == 80){
+        if(Game.time == 90){
             self.obstacleSpeed = 1.3;
         }
         if(Game.time == 120){

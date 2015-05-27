@@ -30,6 +30,9 @@ function Player() {
 
     // handle movement
     window.addEventListener('keydown', function (event) { keyDown(event); }, false);
+    var hammertime = Hammer(document.body).on("swipe", function(event) {
+        alert('hello!');
+    });
 
     function updateLocation() {
         self.cube.position.x = currentGrid[self.xPos][self.yPos].x;

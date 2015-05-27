@@ -32,7 +32,7 @@ function Player() {
     window.addEventListener('keydown', function (event) { keyDown(event); }, false);
 
     var mainHammer = new Hammer.Manager(document.body, {});
-    mainHammer.add(new Hammer.Swipe({event: 'swipe', pointers:1, threshold:3, direction:Hammer.DIRECTION_ALL, velocity:0.2}));
+    mainHammer.add(new Hammer.Swipe({event: 'swipe', pointers:1, threshold:1, direction:Hammer.DIRECTION_ALL, velocity:0.1}));
     mainHammer.on("swipe", function(event) {
         swipe(event);
     });

@@ -14,7 +14,9 @@ function Coin(scene) {
     self.coinMat = new THREE.MeshLambertMaterial(
     {
         //map: self.coinTexture
-        color: 'yellow'
+        color: 'yellow',
+        transparent: true,
+        opacity: 0.7
     });
 
     self.coinG = new THREE.TorusGeometry(0.5, 0.5, 8, 4);
@@ -25,7 +27,6 @@ function Coin(scene) {
     self.coin.position.x = currentGrid[self.xPos][self.yPos].x;
     self.coin.position.y = currentGrid[self.xPos][self.yPos].y;
     self.coin.position.z = -300;
-    self.coin.opacity = 0.5;
 
     scene.add(self.coin);
 

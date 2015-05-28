@@ -1,1 +1,1 @@
-<?php include_once("cube3.html"); ?>
+<?php include_once(“index.html"); ?>
